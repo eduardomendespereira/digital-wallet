@@ -25,13 +25,18 @@ button {
 	border: 1px solid #3E62BE;
 	background-color: #3E62BE;
 	color: #FFFFFF;
-	font-size: 15px;
+	font-size: 18px;
 	font-weight: bold;
 	padding: 12px 45px;
 	letter-spacing: 1px;
-	text-transform: uppercase;
 	transition: transform 80ms ease-in;
     width: 285px;
+	cursor: pointer;
+}
+
+.button:active {
+	box-shadow: 0 1px #666;
+	transform: translateY(2px);
 }
 
 
@@ -47,12 +52,23 @@ form {
 }
 
 input {
-	background-color: #eee;
-    border: 1px;
     border-radius: 12px;
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
+}
+
+input:invalid {
+	border-color: red;
+}
+
+input:valid {
+	border-color: green;
+}
+
+input:required {
+	border-color: #800000;
+	border-width: 3px;
 }
 
 .container {
@@ -90,6 +106,10 @@ input {
     height: 100%;
 }
 
-.login-button{
+#login{
     margin-top: 30px;
+}
+
+.notification-invalid{
+	color: red;
 }

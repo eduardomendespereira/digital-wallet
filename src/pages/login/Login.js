@@ -3,18 +3,84 @@ import { Link } from 'react-router-dom';
 import css from './Login.css';
 import backgroundImg from '../../assets/background-login.png'
 
+var email
+var password
+
+function handleChange(){
+    email = document.getElementById("email").value
+    password = document.getElementById("password").value
+
+    if(email){
+        if (!validateEmail()){
+            generateNotification("Formato de email inválido", "notification-invalid-email", false)
+        }else{
+            clearNotification("notification-invalid-email")
+        }
+    }
+
+    if (password){
+        if(!validatePassword()){
+            generateNotification("A senha deve conter no mínimo 8 caracteres letras maiúsculas, minúsculas e pelo menos 1 caracter especial", "notification-invalid-password", false)
+        }else{
+            clearNotification("notification-invalid-password")
+        }
+    }
+}
+
+function handleLogin(){
+    if (validateEmail() && validatePassword()){
+        window.location.href = "/wallet"
+    }
+}
+
+function generateNotification(message, nameElement, delay=true) {
+    document.getElementById(nameElement).innerText = message
+    if(delay){
+        setTimeout(clearNotification, 2 * 1000, nameElement)
+    }
+}
+
+function clearNotification(nameElement) {
+    document.getElementById(nameElement).innerHTML = null
+}
+
+function validateEmail(){
+    var regerxEmail =  /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+
+    if (regerxEmail.test(email)) {
+        return true
+    }else{
+        return false
+    }
+}
+
+function validatePassword(){
+    var regexPassword = /(?=.*[a-z])(?=.*[A-Z])(?=.*\W){8,}/
+
+    if (regexPassword.test(password)) {
+        return true
+    }else{
+        return false
+    }
+}
+
+window.addEventListener('keyup', handleChange)
+
 const Login = () => {
     return (
-        <div class="container" id="container">
-            <div class="form-container sign-in-container">
+        <div className="container" id="container">
+            <div className="form-container sign-in-container">
                 <form>
                     <h1 className='login-title'>Login para continuar</h1>
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Senha" />
-                    <button className='login-button'>Login</button>
+                    <div id="notification-error" className="notificatiob-error"></div>
+                    <input id="email" type="email" placeholder="Email" />
+                    <div className="notification-invalid" id="notification-invalid-email"></div>
+                    <input id="password" type="password" placeholder="Senha" pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+                    <div className="notification-invalid" id="notification-invalid-password"></div>
+                    <button className="button" type="button" id="login" onClick={handleLogin} >Login</button>
                 </form>
             </div>
-            <div class="overlay-container">
+            <div className="overlay-container">
                 <img className='background-login-image' src={backgroundImg} />
             </div>
         </div>
