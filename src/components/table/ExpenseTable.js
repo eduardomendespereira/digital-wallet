@@ -10,44 +10,54 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
 const columns = [
-    { id: 'name', label: 'Name', minWidth: 170 },
-    { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
     {
-        id: 'population',
-        label: 'Population',
+        id: 'value',
+        label: 'VALOR',
         minWidth: 170,
-        align: 'right',
-        format: (value) => value.toLocaleString('en-US'),
+        align: 'center',
     },
     {
-        id: 'size',
-        label: 'Size\u00a0(km\u00b2)',
+        id: 'description',
+        label: 'DESCRIÇÃO',
+        minWidth: 100,
+        align: 'center'
+    },
+    {
+        id: 'coin',
+        label: 'MOEDA',
         minWidth: 170,
-        align: 'right',
-        format: (value) => value.toLocaleString('en-US'),
+        align: 'center',
+    },
+    {
+        id: 'paymentMethod',
+        label: 'MÉTODO DE PAGAMENTO',
+        minWidth: 170,
+        align: 'center',
+    },
+    {
+        id: 'tag',
+        label: 'TAG',
+        minWidth: 170,
+        align: 'center',
     },
 ];
 
-function createData(name, code, population, size) {
-    return { name, code, population, size };
+function createData(value, description, coin, paymentMethod, tag) {
+    return { value, description, coin, paymentMethod, tag };
 }
 
 const rows = [
-    createData('India', 'IN', 1324171354, 3287263),
-    createData('China', 'CN', 1403500365, 9596961),
-    createData('Italy', 'IT', 60483973, 301340),
-    createData('United States', 'US', 327167434, 9833520),
-    createData('Canada', 'CA', 37602103, 9984670),
-    createData('Australia', 'AU', 25475400, 7692024),
-    createData('Germany', 'DE', 83019200, 357578),
-    createData('Ireland', 'IE', 4857000, 70273),
-    createData('Mexico', 'MX', 126577691, 1972550),
-    createData('Japan', 'JP', 126317000, 377973),
-    createData('France', 'FR', 67022000, 640679),
-    createData('United Kingdom', 'GB', 67545757, 242495),
-    createData('Russia', 'RU', 146793744, 17098246),
-    createData('Nigeria', 'NG', 200962417, 923768),
-    createData('Brazil', 'BR', 210147125, 8515767),
+    createData('600,00', 'Compras do mês', 'BRL', 'Cartão de Crédito', 'Alimentação'),
+    createData('200,00', 'Gasolina', 'BRL', 'Dinheiro', 'Transporte'),
+    createData('300,00', 'Passeio com familia', 'BRL', 'Cartão de Débito', 'Lazer'),
+    createData('200,00', 'Lanche', 'BRL', 'Cartão de Crédito', 'Alimentação'),
+    createData('100,00', 'Uber', 'BRL', 'Cartão de Crédito', 'Transporte'),
+    createData('50,00', 'Compras do mês', 'BRL', 'Dinheiro', 'Alimentação'),
+    createData('520,00', 'Compra bicicleta', 'BRL', 'Cartão de Crédito', 'Lazer'),
+    createData('1000,00', 'Compras do mês', 'BRL', 'Cartão de Crédito', 'Alimentação'),
+    createData('60,00', 'Compras do mês', 'BRL', 'Cartão de Crédito', 'Alimentação'),
+    createData('29,90', 'Uber', 'BRL', 'Cartão de Crédito', 'Transporte'),
+
 ];
 
 const useStyles = makeStyles({
