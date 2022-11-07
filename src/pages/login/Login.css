@@ -2,8 +2,7 @@
 	box-sizing: border-box;
 }
 
-body {
-	background: #f6f5f7;
+.login-body {
 	display: flex;
 	justify-content: center;
 	align-items: center;

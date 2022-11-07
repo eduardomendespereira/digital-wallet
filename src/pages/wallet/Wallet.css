@@ -1,0 +1,110 @@
+.header{
+    background-color: #005986;
+    width: 100%;
+    height: 80px;
+    padding: 15px;
+    opacity: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar h1{
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    margin: 0;
+}
+
+.logo-wallet{
+    position: absolute;
+    left: 0;
+    display: flex;
+    width: 100px;
+    height: 100px;
+}
+
+.exit-icon {
+    position: absolute;
+    right: 0;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.container-activ{
+    display: flex;
+    margin: 50px 30px;
+    justify-content: flex-end;
+}
+
+.activates {
+    background-color: white;
+    display: flex;
+    align-items: flex-end;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 0px 10px #d1d1d1;
+    width: 340px;
+    height: 100px;
+}
+
+.icon-activates {
+    top: -22px;
+    left: 5px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    padding: 8px 8px 8px 8px;
+    width: 85px;
+    border-radius: 25px;
+    background-color: #009C06;
+}
+
+.icon-img{
+    width: 50px;
+}
+
+.text-activates {
+    position: absolute;
+    top: 0 !important; 
+    right: 0;
+    margin: 10px 10px 0px 0px;
+}
+
+.text-result{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0px 10px 15px 0px;
+    font-weight: 400;
+    color: #FF0000;
+}
+
+.insert-container-wallet{
+    display: flex;
+    justify-content: center;
+}
+
+.buttons{
+    background-color: white;
+    width: 100%;
+    margin: 0px 30px;
+    padding: 25px;
+    box-shadow: 0px 1px 10px -2px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.btn-insert{
+    width: 350px;
+    font-weight: 700;
+    font-size: 20px;
+}
