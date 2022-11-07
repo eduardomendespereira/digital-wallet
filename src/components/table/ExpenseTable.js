@@ -20,11 +20,9 @@ function createData(id, value, description, coin, paymentMethod, tag) {
 }
 
 const rows = [
-    createData(1,'Frozen yoghurt', 159, "URL", 6.0, 24),
-    createData(2,'Ice cream sandwich', 237, "URL", 9.0, 37,),
-    createData(3,'Eclair', 262,"URL", 16.0, 24),
-    createData(4,'Cupcake', 305,"URL", 3.7, 67),
-    createData(5,'Gingerbread', 356,"URL", 16.0, 49),
+    createData(1,590, "compras do mes", "URL", "cartão de crédito", "alimentação"),
+    createData(2,800, "compra bicicleta", "URL", "dinheiro", "lazer"),
+    createData(3,100, "gasolina","URL", "cartão de crédito", "transporte"),
 ];
 
 export default function DenseTable() {
