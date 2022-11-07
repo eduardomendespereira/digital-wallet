@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import logoWallet from "../../assets/logo-wallet.png";
 import exitIcon from "../../assets/exit-icon.png";
 import moneyIcon from "../../assets/money-icon.png";
+import ExpenseTable from "../../components/table/ExpenseTable.js";
 
 const Wallet = () => {
   return (
@@ -16,7 +17,7 @@ const Wallet = () => {
             </a>
             <h1>CARTEIRA</h1>
             <a className="exit-icon" href="">
-              <img src={exitIcon} />
+              <img src={exitIcon}/>
             </a>
           </nav>
         </header>
@@ -41,7 +42,9 @@ const Wallet = () => {
             </button>
           </div>
         </div>
-        <h1>Wallet</h1>
+        <div className="table-expense">
+          <ExpenseTable/>
+        </div>
       </div>
     </section>
   );
