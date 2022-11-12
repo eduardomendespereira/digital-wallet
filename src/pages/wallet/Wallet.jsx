@@ -7,10 +7,10 @@ import moneyIcon from "../../assets/money-icon.png";
 import ExpenseTable from "../../components/table/ExpenseTable.jsx";
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import axios from 'axios'
+import api from '../../services/api.jsx';
 
 const coins = () => {
-  axios.get('https://economia.awesomeapi.com.br/json/all')
+  api.get()
       .then((response) => {
         console.log(response.data)
       })
