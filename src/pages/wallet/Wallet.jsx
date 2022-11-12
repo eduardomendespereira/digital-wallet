@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import css from "./Wallet.css";
+import styles from "./Wallet.css";
 import { Link } from "react-router-dom";
 import logoWallet from "../../assets/logo-wallet.png";
+import imageAddExpense from "../../assets/imageAddExpense.png"
 import exitIcon from "../../assets/exit-icon.png";
 import moneyIcon from "../../assets/money-icon.png";
 import ExpenseTable from "../../components/table/ExpenseTable.jsx";
@@ -12,10 +13,21 @@ import {Button} from "@material-ui/core";
 const InsertModal = () => {
   const [open, setOpen] = useState(false)
   return (
-    <div>
+    <div className={styles}>
       <button className="btn-insert" type="button" onClick={() => setOpen(true)}>Cadastrar Despesa</button>
-      <Modal open={open} onClose={() => setOpen(false)}>
-        <h1>MODAL BOLADAO</h1>
+      <Modal className="modal" open={open} onClose={() => setOpen(false)}>
+        <form className="form-add-expense">
+            <img className="image-add-expense" src={imageAddExpense} />
+          <h1 className="title-insert-form">Cadastrar Despesa</h1>
+          <input className="description-input-form-insert" placeholder="Descrição"/>
+          <div className="wrap-inputs-form-add-expense">
+            <input placeholder="Valor"/>
+            <input className="coin-input" placeholder="Moeda"/>
+          </div>
+          <input placeholder="Método de Pagamento"/>
+          <input placeholder="Tag"/>
+          <button className="btn-submit" type="button">Adicionar Despesa</button>
+        </form>
       </Modal>
     </div>
   );
@@ -52,9 +64,6 @@ const Wallet = () => {
 
         <div className="insert-container-wallet">
           <div className="buttons">
-            {/*<button className="btn-insert" type="button">*/}
-            {/*  Cadastrar Despesa*/}
-            {/*</button>*/}
             <InsertModal></InsertModal>
           </div>
         </div>
@@ -62,9 +71,6 @@ const Wallet = () => {
           <ExpenseTable/>
         </div>
       </div>
-      {/*<div>*/}
-      {/*  <InsertModal/>*/}
-      {/*</div>*/}
     </section>
   );
 };

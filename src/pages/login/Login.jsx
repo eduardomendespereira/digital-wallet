@@ -79,7 +79,7 @@ const Login = () => {
     <section className="login-body">
       <div className="container" id="container">
         <div className="form-container sign-in-container">
-          <form>
+          <form className={css}>
             <h1 className="login-title">Login para continuar</h1>
             <div id="notification-error" className="notificatiob-error"></div>
             <input id="email" type="email" placeholder="Email" />
@@ -98,7 +98,7 @@ const Login = () => {
               id="notification-invalid-password"
             ></div>
             <button
-              className="button"
+              className={css.button}
               type="button"
               id="login"
               onClick={handleLogin}
