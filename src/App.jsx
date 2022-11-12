@@ -1,8 +1,8 @@
 import './App.css';
 
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Wallet from "./pages/wallet/Wallet.js";
-import Login from "./pages/login/Login.js";
+import Wallet from "./pages/wallet/Wallet.jsx";
+import Login from "./pages/login/Login.jsx";
 
 function App() {
     return (

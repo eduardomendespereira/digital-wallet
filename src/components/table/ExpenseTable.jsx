@@ -40,14 +40,17 @@ const columns = [
         minWidth: 170,
         align: 'center',
     },
+    {
+        label: 'AÇÕES',
+    },
 ];
 
-function createData(value, description, coin, paymentMethod, tag) {
-    return { value, description, coin, paymentMethod, tag };
+function createData(value, description, coin, paymentMethod, tag, actions = Element) {
+    return { value, description, coin, paymentMethod, tag, actions};
 }
 
 const rows = [
-    createData('600,00', 'Compras do mês', 'BRL', 'Cartão de Crédito', 'Alimentação'),
+    createData('600,00', 'Compras do mês', 'BRL', 'Cartão de Crédito', 'Alimentação',),
     createData('200,00', 'Gasolina', 'BRL', 'Dinheiro', 'Transporte'),
     createData('300,00', 'Passeio com familia', 'BRL', 'Cartão de Débito', 'Lazer'),
     createData('200,00', 'Lanche', 'BRL', 'Cartão de Crédito', 'Alimentação'),
@@ -57,8 +60,8 @@ const rows = [
     createData('1000,00', 'Compras do mês', 'BRL', 'Cartão de Crédito', 'Alimentação'),
     createData('60,00', 'Compras do mês', 'BRL', 'Cartão de Crédito', 'Alimentação'),
     createData('29,90', 'Uber', 'BRL', 'Cartão de Crédito', 'Transporte'),
-
 ];
+
 
 const useStyles = makeStyles({
     root: {
