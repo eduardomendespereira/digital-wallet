@@ -61,6 +61,7 @@ const Wallet = () => {
         <div>
           <button className="btn-insert" type="button" onClick={() => setOpen(true)}>Cadastrar Despesa</button>
           <Modal className="modal" open={open} onClose={() => setOpen(false)}>
+            <div className="insert-modal-container">
             <form className="form-add-expense">
               <img className="image-add-expense" src={imageAddExpense} />
               <h1 className="title-insert-form">Cadastrar Despesa</h1>
@@ -107,6 +108,7 @@ const Wallet = () => {
               />
               <button className="btn-submit" type="button" onClick={handleSubmit}>Adicionar Despesa</button>
             </form>
+            </div>
           </Modal>
         </div>
     );

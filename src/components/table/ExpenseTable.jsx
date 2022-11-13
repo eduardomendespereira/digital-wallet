@@ -10,6 +10,10 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import {getListExpenses, removeExpense} from "../../services/localstorage";
 import {Button} from "@material-ui/core";
+import Style from "./ExpenseTable.css"
+import trashIcon from "../../assets/trash-Icon.png";
+import editIcon from "../../assets/edit-Icon.png";
+
 
 const columns = [
     {
@@ -63,17 +67,18 @@ export default function ExpenseTable() {
 
     const deleteExpense = (id) => {
         removeExpense(id);
+        window.location.reload();
     }
 
     const classes = useStyles();
     return (
             <Paper className={classes.root} style={{borderRadius: 5}}>
                 <TableContainer className={classes.container}>
-                    <Table stickyHeader aria-label="sticky table">
+                    <Table stickyHeader aria-label="sticky table" >
                         <TableHead>
-                            <TableRow>
+                            <TableRow >
                                 {columns.map((column) => (
-                                    <TableCell
+                                    <TableCell className='table-align'
                                         key={column.id}
                                         align={column.align}
                                         style={{ minWidth: column.minWidth }}
@@ -91,8 +96,8 @@ export default function ExpenseTable() {
                                             const value = row[column.id];
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
-                                                    {column.id === 'actions' ? [<Button id="table_icons">Edit</Button>
-                                                        , <Button id="table_icons" onClick={() => deleteExpense(row.id)}>Rem</Button>] : null}
+                                                    {column.id === 'actions' ? [<button className="edit-button" id="table_icons"><img src={editIcon}/></button>
+                                                        , <button className="delete-button"  onClick={() => deleteExpense(row.id)}><img src={trashIcon}/></button>] : null}
                                                     {column.format && typeof value === 'number' ? column.format(value) : value}
                                                 </TableCell>
                                             );
