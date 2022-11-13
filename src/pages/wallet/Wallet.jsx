@@ -14,7 +14,8 @@ import {v4 as uuidv4} from 'uuid';
 import {addListener} from "@reduxjs/toolkit";
 
 const Wallet = () => {
-  const listCoins = []
+  let amount = 0;
+  const [coins, setCoins] = useState([{}])
   const navigate = useNavigate();
   const { id } = useParams();
   const { inputValues, handleInputChange, resetForm, setForm } = useForm({
@@ -43,16 +44,26 @@ const Wallet = () => {
     window.location.reload();
   };
 
-  const coins = () => {
-     api.get()
-        .then((response) => {
-          const datas = response.data
-          // listCoins.push(response.data)
-          // for(var x in datas){
-          //   listCoins.push(x)
-          // }
-          console.log(datas)
-        })
+  // const getCoins = () => {
+  //   api.get()
+  //       .then((response) => {
+  //         setCoins(response.data)
+  //       })
+  // }
+
+  function getAllCoins () {
+      api.get()
+          .then((response) => {
+            setCoins(response.data)
+          })
+  };
+
+  React.useEffect(() => {
+    getAllCoins();
+  }, []);
+
+  function test(){
+    console.log(coins)
   }
 
   const InsertModal = () => {
@@ -70,24 +81,18 @@ const Wallet = () => {
                   id="description-input-form-insert"
                   placeholder="Descrição"
                   type="text"
-                  // value={inputValues.description}
-                  // onChange={handleInputChange}
               />
               <div className="wrap-inputs-form-add-expense">
                 <input
                     name="value"
                     placeholder="Valor"
                     id="value-input-form-insert"
-                    // value={inputValues.value}
-                    // onChange={handleInputChange}
                 />
                 <input
                     name="coin"
                     id="coin-input"
                     placeholder="Moeda"
                     type="text"
-                    // value={inputValues.coin}
-                    // onChange={handleInputChange}
                 />
               </div>
               <input
@@ -95,17 +100,17 @@ const Wallet = () => {
                   placeholder="Método de Pagamento"
                   type="text"
                   id="paymentMethod-input-form-insert"
-                  // value={inputValues.paymentMethod}
-                  // onChange={handleInputChange}
               />
               <input
                   name="tag"
                   placeholder="Tag"
                   type="text"
                   id="tag-input-form-insert"
-                  // value={inputValues.tag}
-                  // onChange={handleInputChange}
               />
+
+              <select>
+
+              </select>
               <button className="btn-submit" type="button" onClick={handleSubmit}>Adicionar Despesa</button>
             </form>
             </div>
@@ -123,6 +128,7 @@ const Wallet = () => {
               <img src={logoWallet} />
             </a>
             <h1>CARTEIRA</h1>
+            <button type="button" onClick={test}></button>
             <a className="exit-icon" onClick={() => navigate('/')}>
               <img src={exitIcon}/>
             </a>
@@ -137,7 +143,7 @@ const Wallet = () => {
             <h1 className="text-activates">Total de Despesas</h1>
 
             <div>
-              <h1 className="text-result">R$ 0,00</h1>
+              <h1 className="text-result">R$ {amount}</h1>
             </div>
           </div>
         </div>
