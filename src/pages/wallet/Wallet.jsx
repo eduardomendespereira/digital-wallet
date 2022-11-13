@@ -14,13 +14,9 @@ import {v4 as uuidv4} from 'uuid';
 import {addListener} from "@reduxjs/toolkit";
 
 const Wallet = () => {
-
-  var buttonAddExpense = document.getElementsByClassName("btn-submit");
-
   const listCoins = []
   const navigate = useNavigate();
   const { id } = useParams();
-  const [ showAlert, setShowAlert ] = useState(false);
   const { inputValues, handleInputChange, resetForm, setForm } = useForm({
     value: '',
     description: '',
@@ -36,11 +32,15 @@ const Wallet = () => {
     }
   }, [id]);
 
-
-
   const handleSubmit = (e) => {
+    inputValues.value = document.getElementById("description-input-form-insert").value
+    inputValues.description = document.getElementById("value-input-form-insert").value
+    inputValues.coin = document.getElementById("coin-input").value
+    inputValues.paymentMethod = document.getElementById("paymentMethod-input-form-insert").value
+    inputValues.tag = document.getElementById("tag-input-form-insert").value
     addExpense({ id: uuidv4(), ...inputValues });
     resetForm();
+    window.location.reload();
   };
 
   const coins = () => {
@@ -66,41 +66,44 @@ const Wallet = () => {
               <h1 className="title-insert-form">Cadastrar Despesa</h1>
               <input
                   name="description"
-                  className="description-input-form-insert"
+                  id="description-input-form-insert"
                   placeholder="Descrição"
                   type="text"
-                  value={inputValues.description}
-                  onChange={handleInputChange}
+                  // value={inputValues.description}
+                  // onChange={handleInputChange}
               />
               <div className="wrap-inputs-form-add-expense">
                 <input
                     name="value"
                     placeholder="Valor"
-                    value={inputValues.value}
-                    onChange={handleInputChange}
+                    id="value-input-form-insert"
+                    // value={inputValues.value}
+                    // onChange={handleInputChange}
                 />
                 <input
                     name="coin"
-                    className="coin-input"
+                    id="coin-input"
                     placeholder="Moeda"
                     type="text"
-                    value={inputValues.coin}
-                    onChange={handleInputChange}
+                    // value={inputValues.coin}
+                    // onChange={handleInputChange}
                 />
               </div>
               <input
                   name="paymentMethod"
                   placeholder="Método de Pagamento"
                   type="text"
-                  value={inputValues.paymentMethod}
-                  onChange={handleInputChange}
+                  id="paymentMethod-input-form-insert"
+                  // value={inputValues.paymentMethod}
+                  // onChange={handleInputChange}
               />
               <input
                   name="tag"
                   placeholder="Tag"
                   type="text"
-                  value={inputValues.tag}
-                  onChange={handleInputChange}
+                  id="tag-input-form-insert"
+                  // value={inputValues.tag}
+                  // onChange={handleInputChange}
               />
               <button className="btn-submit" type="button" onClick={handleSubmit}>Adicionar Despesa</button>
             </form>
@@ -149,5 +152,7 @@ const Wallet = () => {
     </section>
   );
 };
+
+
 
 export default Wallet;

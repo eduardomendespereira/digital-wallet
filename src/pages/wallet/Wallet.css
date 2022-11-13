@@ -149,11 +149,11 @@
     flex-direction: row;
 }
 
-.description-input-form-insert{
+#description-input-form-insert{
     margin-top: 60px;
 }
 
-.coin-input{
+#coin-input{
     margin-left: 5px;
     width: 140px;
 }
