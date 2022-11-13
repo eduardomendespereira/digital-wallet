@@ -11,7 +11,6 @@ import api from '../../services/api.jsx';
 import {useForm} from "../../hooks/useForm";
 import {addExpense, editExpense, getExpenseById} from "../../services/localstorage";
 import {v4 as uuidv4} from 'uuid';
-import {addListener} from "@reduxjs/toolkit";
 
 const Wallet = () => {
   let amount = 0;
@@ -41,12 +40,13 @@ const Wallet = () => {
     inputValues.tag = document.getElementById("tag-input-form-insert").value
     addExpense({ id: uuidv4(), ...inputValues });
     resetForm();
+    amount = inputValues.value
     window.location.reload();
   };
 
   let listAllCoins = Object.keys(coins)
 
-  function getAllCoins () {
+  function getAllCoins() {
       api.get()
           .then((response) => {
             setCoins(response.data)
@@ -54,11 +54,15 @@ const Wallet = () => {
     listAllCoins = Object.keys(coins)
   };
 
-
-
   React.useEffect(() => {
     getAllCoins();
+    // calculateAmount();
   }, []);
+
+  // function calculateAmount(){
+  //   let listBidCoins = listAllCoins['bid']
+  //   console.log(listBidCoins)
+  // }
 
   const InsertModal = () => {
     const [open, setOpen] = useState(false)
@@ -78,6 +82,7 @@ const Wallet = () => {
               />
               <div className="wrap-inputs-form-add-expense">
                 <input
+                    type="number"
                     name="value"
                     placeholder="Valor"
                     id="value-input-form-insert"

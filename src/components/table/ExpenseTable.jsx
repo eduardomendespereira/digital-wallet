@@ -6,7 +6,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import {getListExpenses, removeExpense} from "../../services/localstorage";
 import {Button} from "@material-ui/core";
@@ -18,13 +17,13 @@ import editIcon from "../../assets/edit-Icon.png";
 const columns = [
     {
         id: 'value',
-        label: 'VALOR',
+        label: 'DESCRIÇÃO',
         minWidth: 170,
         align: 'center',
     },
     {
         id: 'description',
-        label: 'DESCRIÇÃO',
+        label: 'VALOR',
         minWidth: 100,
         align: 'center'
     },
