@@ -44,27 +44,19 @@ const Wallet = () => {
     window.location.reload();
   };
 
-  // const getCoins = () => {
-  //   api.get()
-  //       .then((response) => {
-  //         setCoins(response.data)
-  //       })
-  // }
+  let testConvertCoins = Object.keys(coins)
 
   function getAllCoins () {
       api.get()
           .then((response) => {
             setCoins(response.data)
           })
+    testConvertCoins = Object.keys(coins)
   };
 
   React.useEffect(() => {
     getAllCoins();
   }, []);
-
-  function test(){
-    console.log(coins)
-  }
 
   const InsertModal = () => {
     const [open, setOpen] = useState(false)
@@ -88,12 +80,13 @@ const Wallet = () => {
                     placeholder="Valor"
                     id="value-input-form-insert"
                 />
-                <input
-                    name="coin"
-                    id="coin-input"
-                    placeholder="Moeda"
-                    type="text"
-                />
+                <select id="coin-input">
+                  {testConvertCoins.map((coin) => {
+                    return(
+                        <option  key={coin.in} value={inputValues.code}>{coin}</option>
+                    );
+                  })}
+                </select>
               </div>
               <input
                   name="paymentMethod"
@@ -107,10 +100,6 @@ const Wallet = () => {
                   type="text"
                   id="tag-input-form-insert"
               />
-
-              <select>
-
-              </select>
               <button className="btn-submit" type="button" onClick={handleSubmit}>Adicionar Despesa</button>
             </form>
             </div>
@@ -128,7 +117,6 @@ const Wallet = () => {
               <img src={logoWallet} />
             </a>
             <h1>CARTEIRA</h1>
-            <button type="button" onClick={test}></button>
             <a className="exit-icon" onClick={() => navigate('/')}>
               <img src={exitIcon}/>
             </a>

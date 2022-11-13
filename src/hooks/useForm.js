@@ -4,8 +4,8 @@ export const useForm = (initialState = {}) => {
     const [inputValues, setInputValues] = useState({
         value: 0,
         description: '',
-        coin: 'BRL',
-        paymentMethod: 'Dinheiro',
+        coin: '',
+        paymentMethod: '',
         tag: ''
     });
 
