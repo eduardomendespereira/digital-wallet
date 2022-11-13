@@ -1,34 +1,53 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./Wallet.css";
 import logoWallet from "../../assets/logo-wallet.png";
 import imageAddExpense from "../../assets/imageAddExpense.png"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import exitIcon from "../../assets/exit-icon.png";
 import moneyIcon from "../../assets/money-icon.png";
 import ExpenseTable from "../../components/table/ExpenseTable.jsx";
 import Modal from '@material-ui/core/Modal';
 import api from '../../services/api.jsx';
-import {Select} from "@material-ui/core";
+import {useForm} from "../../hooks/useForm";
+import {addExpense, editExpense, getExpenseById} from "../../services/localstorage";
+import {v4 as uuidv4} from 'uuid';
 
 const Wallet = () => {
 
   const listCoins = []
-
   const navigate = useNavigate();
-
-  const [expense, setExpense] = useState({
-
+  const { id } = useParams();
+  const [ showAlert, setShowAlert ] = useState(false);
+  const { inputValues, handleInputChange, resetForm, setForm } = useForm({
+    value: '',
+    description: '',
+    coin: '',
+    paymentMethod: '',
+    tag: ''
   });
+
+  useEffect(() => {
+    if (id) {
+      const expense = getExpenseById(id);
+      setForm(expense);
+    }
+  }, [id]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    id ? editExpense(id, inputValues) : addExpense({ id: uuidv4(), ...inputValues });
+    resetForm();
+  };
 
   const coins = () => {
      api.get()
         .then((response) => {
           const datas = response.data
           // listCoins.push(response.data)
-          for(var x in datas){
-            listCoins.push(x)
-          }
-          console.log(listCoins)
+          // for(var x in datas){
+          //   listCoins.push(x)
+          // }
+          console.log(datas)
         })
   }
 
@@ -56,14 +75,6 @@ const Wallet = () => {
               </div>
               <input placeholder="Método de Pagamento"/>
               <input placeholder="Tag"/>
-              <select>
-                {listCoins.map(coin =>{
-                  return (
-                      <option value={coin}>{coin}</option>
-                  )
-                })}
-
-              </select>
               <button className="btn-submit" type="button" onClick={coins}>Adicionar Despesa</button>
             </form>
           </Modal>

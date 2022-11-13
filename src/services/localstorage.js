@@ -26,3 +26,9 @@ export const editExpense = (id, newExpense) => {
     expenses.push(newExpense);
     localStorage["expenses"] = JSON.stringify(expenses);
 };
+
+export const getExpenseById = (id) => {
+    const expenses = getListExpenses();
+    const expense = expenses.find((expense) => expense.id === id);
+    return expense;
+}
