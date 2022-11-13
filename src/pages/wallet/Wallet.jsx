@@ -51,14 +51,6 @@ const Wallet = () => {
         })
   }
 
-  function insertExpense(){
-
-  }
-
-  const teste = async () => {
-    console.log(listCoins);
-  }
-
   const InsertModal = () => {
     const [open, setOpen] = useState(false)
     return (
@@ -68,14 +60,35 @@ const Wallet = () => {
             <form className="form-add-expense">
               <img className="image-add-expense" src={imageAddExpense} />
               <h1 className="title-insert-form">Cadastrar Despesa</h1>
-              <input className="description-input-form-insert" placeholder="Descrição"/>
+              <input
+                  className="description-input-form-insert"
+                  placeholder="Descrição"
+                  type="text"
+                  value={inputValues.description}
+              />
               <div className="wrap-inputs-form-add-expense">
-                <input placeholder="Valor"/>
-                <input className="coin-input" placeholder="Moeda"/>
+                <input
+                    placeholder="Valor"
+                    value={inputValues.value}
+                />
+                <input
+                    className="coin-input"
+                    placeholder="Moeda"
+                    type="text"
+                    value={inputValues.coin}
+                />
               </div>
-              <input placeholder="Método de Pagamento"/>
-              <input placeholder="Tag"/>
-              <button className="btn-submit" type="button" onClick={coins}>Adicionar Despesa</button>
+              <input
+                  placeholder="Método de Pagamento"
+                  type="text"
+                  value={inputValues.paymentMethod}
+              />
+              <input
+                  placeholder="Tag"
+                  type="text"
+                  value={inputValues.tag}
+              />
+              <button className="btn-submit" type="button" onClick={handleSubmit}>Adicionar Despesa</button>
             </form>
           </Modal>
         </div>
