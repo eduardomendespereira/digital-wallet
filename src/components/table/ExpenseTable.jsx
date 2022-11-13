@@ -8,6 +8,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import {getListExpenses} from "../../services/localstorage";
+import {Button} from "@material-ui/core";
 
 const columns = [
     {
@@ -41,26 +43,12 @@ const columns = [
         align: 'center',
     },
     {
+        id: "actions",
         label: 'AÇÕES',
     },
 ];
 
-function createData(value, description, coin, paymentMethod, tag, actions = Element) {
-    return { value, description, coin, paymentMethod, tag, actions};
-}
-
-const rows = [
-    createData('600,00', 'Compras do mês', 'BRL', 'Cartão de Crédito', 'Alimentação',),
-    createData('200,00', 'Gasolina', 'BRL', 'Dinheiro', 'Transporte'),
-    createData('300,00', 'Passeio com familia', 'BRL', 'Cartão de Débito', 'Lazer'),
-    createData('200,00', 'Lanche', 'BRL', 'Cartão de Crédito', 'Alimentação'),
-    createData('100,00', 'Uber', 'BRL', 'Cartão de Crédito', 'Transporte'),
-    createData('50,00', 'Compras do mês', 'BRL', 'Dinheiro', 'Alimentação'),
-    createData('520,00', 'Compra bicicleta', 'BRL', 'Cartão de Crédito', 'Lazer'),
-    createData('1000,00', 'Compras do mês', 'BRL', 'Cartão de Crédito', 'Alimentação'),
-    createData('60,00', 'Compras do mês', 'BRL', 'Cartão de Crédito', 'Alimentação'),
-    createData('29,90', 'Uber', 'BRL', 'Cartão de Crédito', 'Transporte'),
-];
+const rows = getListExpenses();
 
 
 const useStyles = makeStyles({
@@ -99,6 +87,7 @@ export default function StickyHeadTable() {
                                             const value = row[column.id];
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
+                                                    {column.id === 'actions' ? [<Button id="table_icons">Edit</Button>, <Button id="table_icons">Rem</Button>] : null}
                                                     {column.format && typeof value === 'number' ? column.format(value) : value}
                                                 </TableCell>
                                             );
