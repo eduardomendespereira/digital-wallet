@@ -44,15 +44,17 @@ const Wallet = () => {
     window.location.reload();
   };
 
-  let testConvertCoins = Object.keys(coins)
+  let listAllCoins = Object.keys(coins)
 
   function getAllCoins () {
       api.get()
           .then((response) => {
             setCoins(response.data)
           })
-    testConvertCoins = Object.keys(coins)
+    listAllCoins = Object.keys(coins)
   };
+
+
 
   React.useEffect(() => {
     getAllCoins();
@@ -81,7 +83,7 @@ const Wallet = () => {
                     id="value-input-form-insert"
                 />
                 <select id="coin-input">
-                  {testConvertCoins.map((coin) => {
+                  {listAllCoins.map((coin) => {
                     return(
                         <option  key={coin.in} value={inputValues.code}>{coin}</option>
                     );
