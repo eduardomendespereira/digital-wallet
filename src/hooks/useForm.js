@@ -1,7 +1,13 @@
 import { useState } from "react";
 
 export const useForm = (initialState = {}) => {
-    const [inputValues, setInputValues] = useState({});
+    const [inputValues, setInputValues] = useState({
+        value: 0,
+        description: '',
+        coin: 'BRL',
+        paymentMethod: 'Dinheiro',
+        tag: ''
+    });
 
     const resetForm = () => {
         setInputValues(initialState);
@@ -11,11 +17,11 @@ export const useForm = (initialState = {}) => {
         setInputValues(newValues);
     };
 
-    const handleInputChange = ({ target }) => {
-        setInputValues({
-            ...inputValues,
-            [target.name]: target.value,
-        });
+    const handleInputChange = ({ target: {name, value} }) => {
+        setInputValues((oldExpense) => ({
+            ...oldExpense,
+            [name]: value
+        }));
     };
 
     return { inputValues, handleInputChange, resetForm, setForm };

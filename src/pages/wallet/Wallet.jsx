@@ -11,8 +11,11 @@ import api from '../../services/api.jsx';
 import {useForm} from "../../hooks/useForm";
 import {addExpense, editExpense, getExpenseById} from "../../services/localstorage";
 import {v4 as uuidv4} from 'uuid';
+import {addListener} from "@reduxjs/toolkit";
 
 const Wallet = () => {
+
+  var buttonAddExpense = document.getElementsByClassName("btn-submit");
 
   const listCoins = []
   const navigate = useNavigate();
@@ -33,9 +36,10 @@ const Wallet = () => {
     }
   }, [id]);
 
+
+
   const handleSubmit = (e) => {
-    e.preventDefault();
-    id ? editExpense(id, inputValues) : addExpense({ id: uuidv4(), ...inputValues });
+    addExpense({ id: uuidv4(), ...inputValues });
     resetForm();
   };
 
@@ -61,32 +65,42 @@ const Wallet = () => {
               <img className="image-add-expense" src={imageAddExpense} />
               <h1 className="title-insert-form">Cadastrar Despesa</h1>
               <input
+                  name="description"
                   className="description-input-form-insert"
                   placeholder="Descrição"
                   type="text"
                   value={inputValues.description}
+                  onChange={handleInputChange}
               />
               <div className="wrap-inputs-form-add-expense">
                 <input
+                    name="value"
                     placeholder="Valor"
                     value={inputValues.value}
+                    onChange={handleInputChange}
                 />
                 <input
+                    name="coin"
                     className="coin-input"
                     placeholder="Moeda"
                     type="text"
                     value={inputValues.coin}
+                    onChange={handleInputChange}
                 />
               </div>
               <input
+                  name="paymentMethod"
                   placeholder="Método de Pagamento"
                   type="text"
                   value={inputValues.paymentMethod}
+                  onChange={handleInputChange}
               />
               <input
+                  name="tag"
                   placeholder="Tag"
                   type="text"
                   value={inputValues.tag}
+                  onChange={handleInputChange}
               />
               <button className="btn-submit" type="button" onClick={handleSubmit}>Adicionar Despesa</button>
             </form>

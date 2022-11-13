@@ -2,7 +2,6 @@ export const getListExpenses = () => {
     if (!localStorage["expenses"]) {
         localStorage["expenses"] = "[]";
     }
-
     let expenses = localStorage["expenses"];
     expenses = JSON.parse(expenses);
     return expenses;
