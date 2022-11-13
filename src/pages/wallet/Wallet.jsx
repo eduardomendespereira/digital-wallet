@@ -17,6 +17,8 @@ const Wallet = () => {
   const [coins, setCoins] = useState([{}])
   const navigate = useNavigate();
   const { id } = useParams();
+  const tag = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde']
+  const payment = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito']
   const { inputValues, handleInputChange, resetForm, setForm } = useForm({
     value: '',
     description: '',
@@ -87,7 +89,7 @@ const Wallet = () => {
                     placeholder="Valor"
                     id="value-input-form-insert"
                 />
-                <select id="coin-input">
+                <select id="coin-input" className="select-coin">
                   {listAllCoins.map((coin) => {
                     return(
                         <option  key={coin.in} value={inputValues.code}>{coin}</option>
@@ -95,18 +97,23 @@ const Wallet = () => {
                   })}
                 </select>
               </div>
-              <input
-                  name="paymentMethod"
-                  placeholder="Método de Pagamento"
-                  type="text"
-                  id="paymentMethod-input-form-insert"
-              />
-              <input
-                  name="tag"
-                  placeholder="Tag"
-                  type="text"
-                  id="tag-input-form-insert"
-              />
+              <select className="space-pay" id="paymentMethod-input-form-insert">
+                {payment.map((pay) => {
+                  return (
+                      <option key={pay.in} value={inputValues.code}>{pay}</option>
+                  );
+                })}
+              </select>
+              <h5 className="desc">Método de pagamento</h5>
+
+              <select className="space" id="tag-input-form-insert">
+                {tag.map((tags) => {
+                  return (
+                      <option key={tags.in} value={inputValues.code}>{tags}</option>
+                  );
+                })}
+              </select>
+              <h5 className="desc-tag">Tags</h5>
               <button className="btn-submit" type="button" onClick={handleSubmit}>Adicionar Despesa</button>
             </form>
             </div>
