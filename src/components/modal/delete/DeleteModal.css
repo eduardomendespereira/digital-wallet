@@ -1,0 +1,59 @@
+.modal-del{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 450px;
+    margin-top: 50px;
+}
+
+.form-del-expense{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 100px;
+}
+
+.modal-insert-container{
+    width: 400px;
+}
+
+.image-del-expense{
+    width: 165px;
+    height: 141px;
+}
+
+.title-del-form{
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.text-del{
+    font-weight: bold;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.btn-submit{
+    width: 350px;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.btn-delete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: rgb(206, 14, 14);
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    margin: 0;
+    padding: 10px;
+    border-color: rgb(206, 14, 14);
+    border-width: 5px;
+    border-radius: 40px;
+}
+
