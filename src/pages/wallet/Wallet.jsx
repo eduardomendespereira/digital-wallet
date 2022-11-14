@@ -134,7 +134,7 @@ function Wallet() {
   }
 
     const getAmount = JSON.parse(localStorage.getItem('total'))
-    console.log(getAmount)
+    let getFinalAmount = (getAmount.toFixed(2).toString())
 
     return (
     <section className="wallet-body">
@@ -159,7 +159,7 @@ function Wallet() {
             <h1 className="text-activates">Total de Despesas</h1>
 
             <div>
-              <h1 className="text-result">R$ {getAmount}</h1>
+              <h1 className="text-result">R$ {getFinalAmount}</h1>
             </div>
           </div>
         </div>
