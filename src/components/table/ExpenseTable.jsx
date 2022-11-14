@@ -1,18 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import {getListExpenses, removeExpense} from "../../services/localstorage";
-import {Button} from "@material-ui/core";
-import Style from "./ExpenseTable.css"
-import trashIcon from "../../assets/trash-Icon.png";
+import React from 'react';
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, makeStyles} from '@material-ui/core';
+import {getListExpenses} from "../../services/localstorage";
 import editIcon from "../../assets/edit-Icon.png";
+import DeleteModal from '../modal/delete/DeleteModal';
+import Style from './ExpenseTable.css'
 
+const rows = getListExpenses();
 
 const columns = [
     
@@ -53,7 +46,7 @@ const columns = [
     },
 ];
 
-const rows = getListExpenses();
+
 
 const useStyles = makeStyles({
     root: {
@@ -65,12 +58,6 @@ const useStyles = makeStyles({
 });
 
 export default function ExpenseTable() {
-
-    const deleteExpense = (id) => {
-        removeExpense(id);
-        window.location.reload();
-    }
-
     const classes = useStyles();
     return (
             <Paper className={classes.root} style={{borderRadius: 5}}>
@@ -98,7 +85,7 @@ export default function ExpenseTable() {
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
                                                     {column.id === 'actions' ? [<button className="edit-button" id="table_icons"><img src={editIcon}/></button>
-                                                        , <button className="delete-button"  onClick={() => deleteExpense(row.id)}><img src={trashIcon}/></button>] : null}
+                                                        , DeleteModal(row)] : null}
                                                     {column.format && typeof value === 'number' ? column.format(value) : value}
                                                 </TableCell>
                                             );
