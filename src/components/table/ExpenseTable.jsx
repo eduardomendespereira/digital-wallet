@@ -15,14 +15,15 @@ import editIcon from "../../assets/edit-Icon.png";
 
 
 const columns = [
+    
     {
-        id: 'value',
+        id: 'description',
         label: 'DESCRIÇÃO',
         minWidth: 170,
         align: 'center',
     },
     {
-        id: 'description',
+        id: 'value',
         label: 'VALOR',
         minWidth: 100,
         align: 'center'
@@ -48,6 +49,7 @@ const columns = [
     {
         id: "actions",
         label: 'AÇÕES',
+        align: 'center',
     },
 ];
 

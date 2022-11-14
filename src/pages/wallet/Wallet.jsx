@@ -35,8 +35,8 @@ const Wallet = () => {
   }, [id]);
 
   const handleSubmit = (e) => {
-    inputValues.value = document.getElementById("description-input-form-insert").value
-    inputValues.description = document.getElementById("value-input-form-insert").value
+    inputValues.value = document.getElementById("value-input-form-insert").value
+    inputValues.description = document.getElementById("description-input-form-insert").value
     inputValues.coin = document.getElementById("coin-input").value
     inputValues.paymentMethod = document.getElementById("paymentMethod-input-form-insert").value
     inputValues.tag = document.getElementById("tag-input-form-insert").value
