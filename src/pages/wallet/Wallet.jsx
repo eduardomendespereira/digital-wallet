@@ -9,11 +9,11 @@ import ExpenseTable from "../../components/table/ExpenseTable.jsx";
 import Modal from '@material-ui/core/Modal';
 import api from '../../services/api.jsx';
 import {useForm} from "../../hooks/useForm";
-import {addExpense, editExpense, getExpenseById} from "../../services/localstorage";
+import {addExpense, editExpense, getExpenseById, getListExpenses} from "../../services/localstorage";
 import {v4 as uuidv4} from 'uuid';
 
 const Wallet = () => {
-  let amount = 0;
+  let [amount, setAmount] = useState(0);
   const [coins, setCoins] = useState([{}])
   const navigate = useNavigate();
   const { id } = useParams();
@@ -58,13 +58,23 @@ const Wallet = () => {
 
   React.useEffect(() => {
     getAllCoins();
-    // calculateAmount();
+    calculateAmount();
   }, []);
 
-  // function calculateAmount(){
-  //   let listBidCoins = listAllCoins['bid']
-  //   console.log(listBidCoins)
-  // }
+  function calculateAmount(){
+    let listExpenses = getListExpenses()
+    let values = []
+    for (let x in listExpenses){
+      values.push(parseFloat(listExpenses[x].value))
+    }
+    for (let i in values){
+      if (isNaN(values[i])){
+        values.splice(i, 1)
+      }
+      amount += values[i]
+    }
+    console.log(amount)
+  }
 
   const InsertModal = () => {
     const [open, setOpen] = useState(false)

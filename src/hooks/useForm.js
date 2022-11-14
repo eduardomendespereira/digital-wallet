@@ -1,13 +1,7 @@
 import { useState } from "react";
 
 export const useForm = (initialState = {}) => {
-    const [inputValues, setInputValues] = useState({
-        value: 0,
-        description: '',
-        coin: '',
-        paymentMethod: '',
-        tag: ''
-    });
+    const [inputValues, setInputValues] = useState({});
 
     const resetForm = () => {
         setInputValues(initialState);
