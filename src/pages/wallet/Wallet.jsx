@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import * as React from "react";
 import styles from "./Wallet.css";
 import logoWallet from "../../assets/logo-wallet.png";
 import imageAddExpense from "../../assets/imageAddExpense.png"
@@ -11,10 +11,31 @@ import api from '../../services/api.jsx';
 import {useForm} from "../../hooks/useForm";
 import {addExpense, editExpense, getExpenseById, getListExpenses} from "../../services/localstorage";
 import {v4 as uuidv4} from 'uuid';
+import { getCoins } from "../../services/api.jsx";
 
-const Wallet = () => {
-  let [amount, setAmount] = useState(0);
-  const [coins, setCoins] = useState([{}])
+function Wallet() {
+  const [coins, setCoins] = React.useState([{}])
+  let listAllCoins = Object.keys(coins)
+
+  async function getAllCoins() {
+    const r = await getCoins();
+    const data = r.data
+    setCoins(data)
+    listAllCoins = Object.keys(coins)
+
+    let listExpenses = getListExpenses()
+    for (let x in listExpenses) {
+      amount += data[listExpenses[x].coin].bid * listExpenses[x].value
+    }
+    localStorage.setItem('total', amount/2)
+  };
+
+  React.useEffect(() => {
+    getAllCoins();
+    calculateAmount();
+  }, []);
+
+  let [amount, setAmount] = React.useState(0);
   const navigate = useNavigate();
   const { id } = useParams();
   const tag = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde']
@@ -27,7 +48,7 @@ const Wallet = () => {
     tag: ''
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (id) {
       const expense = getExpenseById(id);
       setForm(expense);
@@ -46,31 +67,18 @@ const Wallet = () => {
     window.location.reload();
   };
 
-  let listAllCoins = Object.keys(coins)
 
-  function getAllCoins() {
-      api.get()
-          .then((response) => {
-            setCoins(response.data)
-          })
-    listAllCoins = Object.keys(coins)
-  };
-
-  React.useEffect(() => {
-    getAllCoins();
-    calculateAmount();
-  }, []);
 
   function calculateAmount(){
     let listExpenses = getListExpenses()
     // for (let x in listExpenses) {
     //   amount += coins[listExpenses[x].coin].bid * listExpenses[x].value
     // }
-    console.log(coins)
+
   }
 
   const InsertModal = () => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = React.useState(false)
     return (
         <div>
           <button className="btn-insert" type="button" onClick={() => setOpen(true)}>Cadastrar Despesa</button>
@@ -125,6 +133,9 @@ const Wallet = () => {
     );
   }
 
+    const getAmount = JSON.parse(localStorage.getItem('total'))
+    console.log(getAmount)
+
     return (
     <section className="wallet-body">
       <div>
@@ -148,7 +159,7 @@ const Wallet = () => {
             <h1 className="text-activates">Total de Despesas</h1>
 
             <div>
-              <h1 className="text-result">R$ {amount}</h1>
+              <h1 className="text-result">R$ {getAmount}</h1>
             </div>
           </div>
         </div>
