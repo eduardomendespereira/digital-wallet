@@ -1,17 +1,14 @@
 import * as React from "react";
 import styles from "./Wallet.css";
-import logoWallet from "../../assets/logo-wallet.png";
-import imageAddExpense from "../../assets/imageAddExpense.png"
 import { useNavigate, useParams } from 'react-router-dom';
-import exitIcon from "../../assets/exit-icon.png";
-import moneyIcon from "../../assets/money-icon.png";
+import {addExpense, editExpense, getExpenseById, getListExpenses} from "../../services/localstorage";
+import api from '../../services/api.jsx'; //Important
+import { getCoins } from "../../services/api.jsx"; //Important
+import {useForm} from "../../hooks/useForm"; //Important
+import {v4 as uuidv4} from 'uuid';
 import ExpenseTable from "../../components/table/ExpenseTable.jsx";
 import Modal from '@material-ui/core/Modal';
-import api from '../../services/api.jsx';
-import {useForm} from "../../hooks/useForm";
-import {addExpense, editExpense, getExpenseById, getListExpenses} from "../../services/localstorage";
-import {v4 as uuidv4} from 'uuid';
-import { getCoins } from "../../services/api.jsx";
+
 
 function Wallet() {
   const [coins, setCoins] = React.useState([{}])
@@ -71,10 +68,6 @@ function Wallet() {
 
   function calculateAmount(){
     let listExpenses = getListExpenses()
-    // for (let x in listExpenses) {
-    //   amount += coins[listExpenses[x].coin].bid * listExpenses[x].value
-    // }
-
   }
 
   const InsertModal = () => {
@@ -85,7 +78,7 @@ function Wallet() {
           <Modal className="modal" open={open} onClose={() => setOpen(false)}>
             <div className="insert-modal-container">
             <form className="form-add-expense">
-              <img className="image-add-expense" src={imageAddExpense} />
+              <img className="image-add-expense" src={require('../../assets/imageAddExpense.png')} />
               <h1 className="title-insert-form">Cadastrar Despesa</h1>
               <input
                   name="description"
@@ -142,11 +135,11 @@ function Wallet() {
         <header className="header">
           <nav className="navbar">
             <a className="logo-wallet" href="">
-              <img src={logoWallet} />
+              <img src={require('../../assets/logo-wallet.png')} />
             </a>
             <h1>CARTEIRA</h1>
             <a className="exit-icon" onClick={() => navigate('/')}>
-              <img src={exitIcon}/>
+              <img src={require('../../assets/exit-icon.png')}/>
             </a>
           </nav>
         </header>
@@ -154,7 +147,7 @@ function Wallet() {
         <div className="container-activ">
           <div className="activates">
             <div className="icon-activates">
-              <img className="icon-img" src={moneyIcon} />
+              <img className="icon-img" src={require('../../assets/money-icon.png')} />
             </div>
             <h1 className="text-activates">Total de Despesas</h1>
 
@@ -166,7 +159,7 @@ function Wallet() {
 
         <div className="insert-container-wallet">
           <div className="buttons">
-            <InsertModal></InsertModal>
+            <InsertModal/>
           </div>
         </div>
         <div className="table-expense">
