@@ -63,17 +63,10 @@ const Wallet = () => {
 
   function calculateAmount(){
     let listExpenses = getListExpenses()
-    let values = []
-    for (let x in listExpenses){
-      values.push(parseFloat(listExpenses[x].value))
-    }
-    for (let i in values){
-      if (isNaN(values[i])){
-        values.splice(i, 1)
-      }
-      amount += values[i]
-    }
-    console.log(amount)
+    // for (let x in listExpenses) {
+    //   amount += coins[listExpenses[x].coin].bid * listExpenses[x].value
+    // }
+    console.log(coins)
   }
 
   const InsertModal = () => {
