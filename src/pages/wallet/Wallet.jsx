@@ -40,6 +40,12 @@ function Wallet() {
     tag: "",
   });
 
+  (function () {
+    if (!JSON.parse(localStorage.getItem('total'))) {
+      localStorage.setItem('total', 0)
+    }
+  })();
+
   React.useEffect(() => {
     if (id) {
       const expense = getExpenseById(id);
