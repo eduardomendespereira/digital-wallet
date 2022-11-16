@@ -1,0 +1,102 @@
+.btn-insert {
+    width: 350px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 600px;
+    margin-top: 40px;
+}
+
+.insert-modal-container {
+    width: 600px;
+}
+
+.form-add-expense {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.image-add-expense {
+    width: 165px;
+    height: 141px;
+}
+
+.title-insert-form {
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.wrap-inputs-form-add-expense {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#description-input-form-insert {
+    margin-top: 30px;
+}
+
+#coin-input {
+    margin-left: 5px;
+    width: 140px;
+}
+
+.btn-submit {
+    width: 350px;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+input {
+    border-color: gray !important;
+    height: 40px;
+}
+
+select {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    border-width: 2px;
+}
+
+.space {
+    margin-top: 18px;
+}
+
+.space-pay {
+    margin-top: 10px;
+}
+
+.select-coin {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    border-width: 2px;
+    margin-top: 8px;
+}
+
+.desc {
+    font-weight: normal;
+    color: rgb(179, 179, 179);
+    margin: 0;
+    width: 100%;
+    margin-right: 350px;
+}
+
+.desc-tag {
+    font-weight: normal;
+    color: rgb(179, 179, 179);
+    margin: 0;
+    width: 100%;
+    margin-right: 450px;
+}
