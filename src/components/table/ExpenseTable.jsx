@@ -9,12 +9,10 @@ import {
   Paper,
   makeStyles,
 } from "@material-ui/core";
-// import { getListExpenses } from "../../services/localstorage";
 import editIcon from "../../assets/edit-Icon.png";
 import DeleteModal from "../modal/delete/DeleteModal";
 import Style from "./ExpenseTable.css";
 
-// const rows = getListExpenses();
 const rows = []
 
 const columns = [

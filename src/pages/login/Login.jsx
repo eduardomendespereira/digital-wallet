@@ -6,9 +6,9 @@ import backgroundImg from "../../assets/background-login.png";
 var email;
 var password;
 
-function handleChange() {
+function handleChangeLongin() {
   email = document.getElementById("email").value;
-  password = document.getElementById("password").value;
+  password = document.getElementById("password")?.value;
 
   if (email) {
     if (!validateEmail()) {
@@ -72,7 +72,7 @@ function validatePassword() {
   }
 }
 
-window.addEventListener("keyup", handleChange);
+window.addEventListener("keyup", handleChangeLongin);
 
 const Login = () => {
   return (

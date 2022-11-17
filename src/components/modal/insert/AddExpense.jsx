@@ -1,74 +1,65 @@
 import * as React from "react";
-import styles from "./InsertModal.css";
+import styles from "./AddExpense.css";
 import { useParams } from "react-router-dom";
-// import {
-//   addExpense,
-//   getExpenseById,
-//   getListExpenses,
-// } from "../../../services/localstorage";
-import api from "../../../services/api.jsx"; //Important
-import { getCoins } from "../../../services/api.jsx"; //Important
-// import { useForm } from "../../../hooks/useForm"; //Important
+import api from "../../../services/api.jsx"; 
+import { getCoins } from "../../../services/api.jsx"; 
 import { v4 as uuidv4 } from "uuid";
 import Modal from "@material-ui/core/Modal";
+import { addExpense, changeExpense } from '../../../features/expenseSlice.js'
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 export default function InsertModal() {
   const [coins, setCoins] = React.useState([{}]);
   let listAllCoins = Object.keys(coins);
+  const dispatch = useDispatch();
+  const [values, setValues] = useState({
+    value: '',
+    description: '',
+    coin: '',
+    paymentMethod: '',
+    tag: ''
+  });
+  
+
+  const handleAddExpense = () => {
+    setValues({
+      value: '',
+      description: '',
+      coin: '', 
+      paymentMethod: '',
+      tag: ''
+    });
+    dispatch(addExpense({
+      id: uuidv4(),
+      value: values.value,
+      description: values.description,
+      coin: values.coin,
+      paymentMethod: values.paymentMethod,
+      tag: values.ta
+    }))
+  }
+
+  function handleChange({ target: { name, value }}) {
+    setValues((oldValues) => ({
+      ...oldValues,
+      [name]: value
+    }))
+  }
 
   async function getAllCoins() {
     const r = await getCoins();
     const data = r.data;
     setCoins(data);
     listAllCoins = Object.keys(coins);
-
-    // let listExpenses = getListExpenses();
-    // for (let x in listExpenses) {
-    //   amount += data[listExpenses[x].coin].bid * listExpenses[x].value;
-    // }
-    // localStorage.setItem("total", amount / 2);
   }
 
   React.useEffect(() => {
     getAllCoins();
   }, []);
 
-  let [amount, setAmount] = React.useState(0);
-  const { id } = useParams();
   const tag = ["Alimentação", "Lazer", "Trabalho", "Transporte", "Saúde"];
   const payment = ["Dinheiro", "Cartão de crédito", "Cartão de débito"];
-  // const { inputValues, handleInputChange, resetForm, setForm } = useForm({
-  //   value: "",
-  //   description: "",
-  //   coin: "",
-  //   paymentMethod: "",
-  //   tag: "",
-  // });
-
-  // React.useEffect(() => {
-  //   if (id) {
-  //     const expense = getExpenseById(id);
-  //     setForm(expense);
-  //   }
-  // }, [id]);
-
-  const handleSubmit = (e) => {
-    // inputValues.value = document.getElementById(
-    //   "value-input-form-insert"
-    // ).value;
-    // inputValues.description = document.getElementById(
-    //   "description-input-form-insert"
-    // ).value;
-    // inputValues.coin = document.getElementById("coin-input").value;
-    // inputValues.paymentMethod = document.getElementById(
-    //   "paymentMethod-input-form-insert"
-    // ).value;
-    // inputValues.tag = document.getElementById("tag-input-form-insert").value;
-    // addExpense({ id: uuidv4(), ...inputValues });
-    // resetForm();
-    // amount = inputValues.value;
-    // window.location.reload();
-  };
 
   const [open, setOpen] = React.useState(false);
 
@@ -94,6 +85,8 @@ export default function InsertModal() {
               id="description-input-form-insert"
               placeholder="Descrição"
               type="text"
+              value={values.description}
+              onChange={handleChange}
             />
             <div className="wrap-inputs-form-add-expense">
               <input
@@ -102,11 +95,13 @@ export default function InsertModal() {
                 placeholder="Valor"
                 id="value-input-form-insert"
                 required
+                value={values.value}
+                onChange={handleChange}
               />
               <select id="coin-input" className="select-coin">
                 {listAllCoins.map((coin) => {
                   return (
-                    <option key={coin.in} value={''}>
+                    <option key={coin.in} value={values.coin}>
                       {coin}
                     </option>
                   );
@@ -116,7 +111,7 @@ export default function InsertModal() {
             <select className="space-pay" id="paymentMethod-input-form-insert">
               {payment.map((pay) => {
                 return (
-                  <option key={pay.in} value={''}>
+                  <option key={pay.in} value={values.paymentMethod}>
                     {pay}
                   </option>
                 );
@@ -127,14 +122,14 @@ export default function InsertModal() {
             <select className="space" id="tag-input-form-insert">
               {tag.map((tags) => {
                 return (
-                  <option key={tags.in} value={''}>
+                  <option key={tags.in} value={values.tag}>
                     {tags}
                   </option>
                 );
               })}
             </select>
             <h5 className="desc-tag">Tags</h5>
-            <button className="btn-submit" type="button" onClick={handleSubmit}>
+            <button className="btn-submit" type="button" onClick={handleAddExpense}>
               Adicionar Despesa
             </button>
           </form>

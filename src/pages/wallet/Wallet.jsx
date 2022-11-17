@@ -3,60 +3,20 @@ import styles from "./Wallet.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCoins } from "../../services/api.jsx";
 import ExpenseTable from "../../components/table/ExpenseTable.jsx";
-import InsertModal from "../../components/modal/insert/InsertModal";
+import AddExpense from "../../components/modal/insert/AddExpense";
+
 
 function Wallet() {
-  const [coins, setCoins] = React.useState([{}]);
-  let listAllCoins = Object.keys(coins);
-
-  async function getAllCoins() {
-    const r = await getCoins();
-    const data = r.data;
-    setCoins(data);
-    listAllCoins = Object.keys(coins);
-
-    // let listExpenses = getListExpenses();
-    // for (let x in listExpenses) {
-    //   amount += data[listExpenses[x].coin].bid * listExpenses[x].value;
-    // }
-    // localStorage.setItem("total", amount / 2);
-  }
-
-  React.useEffect(() => {
-    getAllCoins();
-    // calculateAmount();
-  }, []);
 
   let [amount, setAmount] = React.useState(0);
   const navigate = useNavigate();
-  const { id } = useParams();
-  // const { setForm } = useForm({
-  //   value: "",
-  //   description: "",
-  //   coin: "",
-  //   paymentMethod: "",
-  //   tag: "",
-  // });
+  const [coins, setCoins] = React.useState([{}]);
+  let listAllCoins = Object.keys(coins);
 
-  // (function () {
-  //   if (!JSON.parse(localStorage.getItem('total'))) {
-  //     localStorage.setItem('total', 0)
-  //   }
-  // })();
-
-  // React.useEffect(() => {
-  //   if (id) {
-  //     const expense = getExpenseById(id);
-  //      setForm(expense);
-  //   }
-  // }, [id]);
 
   function calculateAmount() {
-    // let listExpenses = getListExpenses();
-  }
 
-  // const getAmount = JSON.parse(localStorage.getItem("total"));
-  // let getFinalAmount = getAmount.toFixed(2).toString();
+  }
 
   return (
     <section className="wallet-body">
@@ -91,7 +51,7 @@ function Wallet() {
 
         <div className="insert-container-wallet">
           <div className="buttons">
-            <InsertModal />
+            <AddExpense />
           </div>
         </div>
         <div className="table-expense">
