@@ -8,8 +8,8 @@ const initialState = {
     tag: ''
 };
 
-const walletSlice = createSlice({
-    name: 'walletReducer',
+const expenseSlice = createSlice({
+    name: 'expensesReducer',
     initialState,
     reducers: {
         addExpense: (state = initialState, action) => {
@@ -26,5 +26,5 @@ const walletSlice = createSlice({
 });
 
 
-export const { addExpense, deleteExpense} = walletSlice = walletSlice.actions;
-export default walletSlice.reducer;
+export const { addExpense, deleteExpense} = expenseSlice.actions;
+export default expenseSlice.reducer;
