@@ -1,15 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-    expense: {
-        value: '',
-        description: '',
-        coin: '',
-        paymentMethod: '',
-        tag: ''
-    }
-    
-};
+const initialState = [];
 
 const expenseSlice = createSlice({
     name: 'expensesReducer',
@@ -25,12 +16,10 @@ const expenseSlice = createSlice({
                 return state.filter(user => user.id !== id);
             }
         },
-        changeExpense: (state, action) => {
-            state.expense = action.payload
-        }
+    
     }
 });
 
 
-export const { addExpense, deleteExpense, changeExpense} = expenseSlice.actions;
+export const { addExpense, deleteExpense} = expenseSlice.actions;
 export default expenseSlice.reducer;

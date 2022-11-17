@@ -5,11 +5,13 @@ import api from "../../../services/api.jsx";
 import { getCoins } from "../../../services/api.jsx"; 
 import { v4 as uuidv4 } from "uuid";
 import Modal from "@material-ui/core/Modal";
-import { addExpense, changeExpense } from '../../../features/expenseSlice.js'
+import { addExpense } from '../../../features/expenseSlice.js'
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 export default function InsertModal() {
+  const tag = ["Alimentação", "Lazer", "Trabalho", "Transporte", "Saúde"];
+  const payment = ["Dinheiro", "Cartão de crédito", "Cartão de débito"];
   const [coins, setCoins] = React.useState([{}]);
   let listAllCoins = Object.keys(coins);
   const dispatch = useDispatch();
@@ -23,20 +25,20 @@ export default function InsertModal() {
   
 
   const handleAddExpense = () => {
-    setValues({
-      value: '',
-      description: '',
-      coin: '', 
-      paymentMethod: '',
-      tag: ''
-    });
+    // setValues({
+    //   value: '',
+    //   description: '',
+    //   coin: '', 
+    //   paymentMethod: '',
+    //   tag: ''
+    // });
     dispatch(addExpense({
       id: uuidv4(),
       value: values.value,
       description: values.description,
       coin: values.coin,
       paymentMethod: values.paymentMethod,
-      tag: values.ta
+      tag: values.tag
     }))
   }
 
@@ -57,9 +59,6 @@ export default function InsertModal() {
   React.useEffect(() => {
     getAllCoins();
   }, []);
-
-  const tag = ["Alimentação", "Lazer", "Trabalho", "Transporte", "Saúde"];
-  const payment = ["Dinheiro", "Cartão de crédito", "Cartão de débito"];
 
   const [open, setOpen] = React.useState(false);
 
@@ -101,7 +100,7 @@ export default function InsertModal() {
               <select id="coin-input" className="select-coin">
                 {listAllCoins.map((coin) => {
                   return (
-                    <option key={coin.in} value={values.coin}>
+                    <option key={coin.in} value={values.coin} onChange={handleChange}>
                       {coin}
                     </option>
                   );
@@ -111,7 +110,7 @@ export default function InsertModal() {
             <select className="space-pay" id="paymentMethod-input-form-insert">
               {payment.map((pay) => {
                 return (
-                  <option key={pay.in} value={values.paymentMethod}>
+                  <option key={pay.in} value={values.paymentMethod} onChange={handleChange}>
                     {pay}
                   </option>
                 );
@@ -122,7 +121,7 @@ export default function InsertModal() {
             <select className="space" id="tag-input-form-insert">
               {tag.map((tags) => {
                 return (
-                  <option key={tags.in} value={values.tag}>
+                  <option key={tags.in} value={values.tag} onChange={handleChange}>
                     {tags}
                   </option>
                 );
