@@ -1,9 +1,7 @@
 import * as React from "react";
 import styles from "./Wallet.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { getExpenseById, getListExpenses } from "../../services/localstorage";
-import { getCoins } from "../../services/api.jsx"; //Important
-import { useForm } from "../../hooks/useForm"; //Important
+import { getCoins } from "../../services/api.jsx";
 import ExpenseTable from "../../components/table/ExpenseTable.jsx";
 import InsertModal from "../../components/modal/insert/InsertModal";
 
@@ -17,48 +15,48 @@ function Wallet() {
     setCoins(data);
     listAllCoins = Object.keys(coins);
 
-    let listExpenses = getListExpenses();
-    for (let x in listExpenses) {
-      amount += data[listExpenses[x].coin].bid * listExpenses[x].value;
-    }
-    localStorage.setItem("total", amount / 2);
+    // let listExpenses = getListExpenses();
+    // for (let x in listExpenses) {
+    //   amount += data[listExpenses[x].coin].bid * listExpenses[x].value;
+    // }
+    // localStorage.setItem("total", amount / 2);
   }
 
   React.useEffect(() => {
     getAllCoins();
-    calculateAmount();
+    // calculateAmount();
   }, []);
 
   let [amount, setAmount] = React.useState(0);
   const navigate = useNavigate();
   const { id } = useParams();
-  const { setForm } = useForm({
-    value: "",
-    description: "",
-    coin: "",
-    paymentMethod: "",
-    tag: "",
-  });
+  // const { setForm } = useForm({
+  //   value: "",
+  //   description: "",
+  //   coin: "",
+  //   paymentMethod: "",
+  //   tag: "",
+  // });
 
-  (function () {
-    if (!JSON.parse(localStorage.getItem('total'))) {
-      localStorage.setItem('total', 0)
-    }
-  })();
+  // (function () {
+  //   if (!JSON.parse(localStorage.getItem('total'))) {
+  //     localStorage.setItem('total', 0)
+  //   }
+  // })();
 
-  React.useEffect(() => {
-    if (id) {
-      const expense = getExpenseById(id);
-      setForm(expense);
-    }
-  }, [id]);
+  // React.useEffect(() => {
+  //   if (id) {
+  //     const expense = getExpenseById(id);
+  //      setForm(expense);
+  //   }
+  // }, [id]);
 
   function calculateAmount() {
-    let listExpenses = getListExpenses();
+    // let listExpenses = getListExpenses();
   }
 
-  const getAmount = JSON.parse(localStorage.getItem("total"));
-  let getFinalAmount = getAmount.toFixed(2).toString();
+  // const getAmount = JSON.parse(localStorage.getItem("total"));
+  // let getFinalAmount = getAmount.toFixed(2).toString();
 
   return (
     <section className="wallet-body">
@@ -86,7 +84,7 @@ function Wallet() {
             <h1 className="text-activates">Total de Despesas</h1>
 
             <div>
-              <h1 className="text-result">R$ {getFinalAmount}</h1>
+              <h1 className="text-result">R$ 0.00</h1>
             </div>
           </div>
         </div>

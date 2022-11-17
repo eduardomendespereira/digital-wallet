@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import trashIcon from "../../../assets/trash-Icon.png";
 import styles from "./DeleteModal.css";
-import {removeExpense} from "../../../services/localstorage"
+// import {removeExpense} from "../../../services/localstorage"
 import imageDelExpense from "../../../assets/imageDelExpense.png";
 import Modal from "@material-ui/core/Modal";
 
@@ -11,7 +11,7 @@ export default function DeleteModal(getRow){
     const [open, setOpen] = useState(false);
 
     const deleteExpense = (id) => {
-        removeExpense(id);
+        // removeExpense(id);
         window.location.reload();
     }
     
