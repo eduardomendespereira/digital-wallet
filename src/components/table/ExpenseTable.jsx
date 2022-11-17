@@ -12,6 +12,10 @@ import {
 import editIcon from "../../assets/edit-Icon.png";
 import DeleteModal from "../modal/delete/DeleteModal";
 import Style from "./ExpenseTable.css";
+import { useSelector } from "react-redux";
+
+
+// const expenses = useSelector(store => store.expenses);
 
 const rows = []
 

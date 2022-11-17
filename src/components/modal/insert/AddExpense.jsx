@@ -25,20 +25,16 @@ export default function InsertModal() {
   
 
   const handleAddExpense = () => {
-    // setValues({
-    //   value: '',
-    //   description: '',
-    //   coin: '', 
-    //   paymentMethod: '',
-    //   tag: ''
-    // });
+    setValues({
+      value: '',
+      description: '',
+      coin: '', 
+      paymentMethod: '',
+      tag: ''
+    });
     dispatch(addExpense({
       id: uuidv4(),
-      value: values.value,
-      description: values.description,
-      coin: values.coin,
-      paymentMethod: values.paymentMethod,
-      tag: values.tag
+      ...values
     }))
   }
 
