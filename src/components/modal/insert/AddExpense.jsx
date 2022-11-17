@@ -8,34 +8,31 @@ import Modal from "@material-ui/core/Modal";
 import { addExpense } from '../../../features/expenseSlice.js'
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 export default function InsertModal() {
-  const tag = ["Alimentação", "Lazer", "Trabalho", "Transporte", "Saúde"];
+  const tags = ["Alimentação", "Lazer", "Trabalho", "Transporte", "Saúde"];
   const payment = ["Dinheiro", "Cartão de crédito", "Cartão de débito"];
   const [coins, setCoins] = React.useState([{}]);
   let listAllCoins = Object.keys(coins);
   const dispatch = useDispatch();
-  const [values, setValues] = useState({
+  const navigate = useNavigate();
+  const initialState = {
     value: '',
     description: '',
-    coin: '',
-    paymentMethod: '',
-    tag: ''
-  });
+    coin: 'USD',
+    paymentMethod: 'Dinheiro',
+    tag: 'Alimentação'
+  }
+  const [values, setValues] = useState(initialState);
   
 
   const handleAddExpense = () => {
-    setValues({
-      value: '',
-      description: '',
-      coin: '', 
-      paymentMethod: '',
-      tag: ''
-    });
     dispatch(addExpense({
       id: uuidv4(),
       ...values
     }))
+    setValues(initialState)
   }
 
   function handleChange({ target: { name, value }}) {
@@ -93,20 +90,20 @@ export default function InsertModal() {
                 value={values.value}
                 onChange={handleChange}
               />
-              <select id="coin-input" className="select-coin">
+              <select id="coin-input" className="select-coin" name="coin" onChange={handleChange}>
                 {listAllCoins.map((coin) => {
                   return (
-                    <option key={coin.in} value={values.coin} onChange={handleChange}>
+                    <option key={coin.in} value={coin}>
                       {coin}
                     </option>
                   );
                 })}
               </select>
             </div>
-            <select className="space-pay" id="paymentMethod-input-form-insert">
+            <select className="space-pay" name="paymentMethod" id="paymentMethod-input-form-insert" onChange={handleChange}>
               {payment.map((pay) => {
                 return (
-                  <option key={pay.in} value={values.paymentMethod} onChange={handleChange}>
+                  <option key={pay.in} value={pay}>
                     {pay}
                   </option>
                 );
@@ -114,11 +111,11 @@ export default function InsertModal() {
             </select>
             <h5 className="desc">Método de pagamento</h5>
 
-            <select className="space" id="tag-input-form-insert">
-              {tag.map((tags) => {
+            <select className="space" name="tag" id="tag-input-form-insert" onChange={handleChange}>
+              {tags.map((tag) => {
                 return (
-                  <option key={tags.in} value={values.tag} onChange={handleChange}>
-                    {tags}
+                  <option key={tag.in} value={tag}>
+                    {tag}
                   </option>
                 );
               })}
