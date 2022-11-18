@@ -10,7 +10,6 @@ const Login = () => {
   let password;
 
   function handleChangeLogin() {
-    console.log('oi')
     email = document.getElementById("email").value;
     password = document.getElementById("password").value;
     if (email) {

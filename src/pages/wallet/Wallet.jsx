@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getCoins } from "../../services/api.jsx";
 import ExpenseTable from "../../components/table/ExpenseTable.jsx";
 import AddExpense from "../../components/modal/insert/AddExpense";
+import {useSelector} from "react-redux";
 
 
 function Wallet() {
@@ -12,11 +13,20 @@ function Wallet() {
   const navigate = useNavigate();
   const [coins, setCoins] = React.useState([{}]);
   let listAllCoins = Object.keys(coins);
+  let listExpenses = useSelector(store => store.expenses);
 
-
-  function calculateAmount() {
-
+  async function calculateAmount(){
+    const getListCoins = (await getCoins()).data;
+    setCoins(getListCoins);
+    for (let x in listExpenses){
+      amount += parseFloat(coins[listExpenses[x].coin].bid * listExpenses[x].value)
+      console.log(amount)
+    }
   }
+
+  React.useEffect(() => {
+    calculateAmount();
+  }, []);
 
   return (
     <section className="wallet-body">
@@ -44,7 +54,7 @@ function Wallet() {
             <h1 className="text-activates">Total de Despesas</h1>
 
             <div>
-              <h1 className="text-result">R$ 0.00</h1>
+              <h1 className="text-result">R$ {amount}</h1>
             </div>
           </div>
         </div>
