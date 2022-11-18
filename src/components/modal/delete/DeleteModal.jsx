@@ -1,36 +1,35 @@
-import React, {useState} from 'react';
-import trashIcon from "../../../assets/trash-Icon.png";
-import styles from "./DeleteModal.css";
-import imageDelExpense from "../../../assets/imageDelExpense.png";
-import Modal from "@material-ui/core/Modal";
-import {deleteExpense} from "../../../features/expenseSlice";
-import { useDispatch } from "react-redux";
-const getRow = 0;
+// import React, {useState} from 'react';
+// import trashIcon from "../../../assets/trash-Icon.png";
+// import styles from "./DeleteModal.css";
+// import imageDelExpense from "../../../assets/imageDelExpense.png";
+// import Modal from "@material-ui/core/Modal";
+// import {deleteExpense} from "../../../features/expenseSlice";
+// import { useDispatch } from "react-redux";
 
-export default function DeleteModal(getRow){
-    const [open, setOpen] = useState(false);
-    const dispatch = useDispatch();
+// export default function DeleteModal(props){
+//     const [open, setOpen] = useState(false);
+//     const dispatch = useDispatch();
 
-    const handleRemoveExpense = (id) => {
-        dispatch(deleteExpense({ id }));
-    }
+//     const handleRemoveExpense = (id) => {
+//         dispatch(deleteExpense({ id }));
+//     }
     
-  return (
-    <div>
-      <button className="delete-button" onClick={() => setOpen(true)}><img src={trashIcon}/></button>
-      <Modal className="modal-del" open={open} onClose={() => setOpen(false)}>
-        <form className="form-del-expense">
-          <div className="modal-delete-container">
-            <img className="image-del-expense" src={imageDelExpense} />
-            <h1 className="title-del-form">Deletar Despesa</h1>
-            <h1 className="text-del">Você tem certeza que deseja deleta esta despesa??</h1>
-            <hr width="500"/>
-            <button className="btn-submit" type="button" onClick={() => handleRemoveExpense(getRow.id)}>
-              Deletar Despesa
-            </button>
-          </div>
-        </form>
-      </Modal>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <button className="delete-button" onClick={() => setOpen(true)}><img src={trashIcon}/></button>
+//       <Modal className="modal-del" open={open} onClose={() => setOpen(false)}>
+//         <form className="form-del-expense">
+//           <div className="modal-delete-container">
+//             <img className="image-del-expense" src={imageDelExpense} />
+//             <h1 className="title-del-form">Deletar Despesa</h1>
+//             <h1 className="text-del">Você tem certeza que deseja deleta esta despesa??</h1>
+//             <hr width="500"/>
+//             <button className="btn-submit" type="button" onClick={() => handleRemoveExpense(props.id)}>
+//               Deletar Despesa
+//             </button>
+//           </div>
+//         </form>
+//       </Modal>
+//     </div>
+//   );
+// }
