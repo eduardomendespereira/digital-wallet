@@ -15,21 +15,18 @@ function Wallet() {
   let listAllCoins = Object.keys(coins);
   let listExpenses = useSelector(store => store.expenses);
 
-  
+  async function calculateAmount(){
+    const getListCoins = (await getCoins()).data;
+    setCoins(getListCoins);
+    for (let x in listExpenses){
+      amount += coins[listExpenses[x].coin].bid * listExpenses[x].value
+    }
+    setAmount(amount)
+  }
 
   useEffect(() => {
-    async function calculateAmount(){
-      const getListCoins = (await getCoins()).data;
-      setCoins(getListCoins);
-      for (let x in listExpenses){
-        amount += (coins[listExpenses[x].coin].bid * listExpenses[x].value)
-        console.log(amount)
-      }
-      setAmount(amount)
-    }
     calculateAmount()
   }, [listExpenses]);
-
 
   return (
     <section className="wallet-body">

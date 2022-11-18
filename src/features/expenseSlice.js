@@ -16,7 +16,6 @@ const expenseSlice = createSlice({
                 return state.filter(user => user.id !== id);
             }
         },
-    
     }
 });
 
