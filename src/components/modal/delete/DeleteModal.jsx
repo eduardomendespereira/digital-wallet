@@ -3,14 +3,16 @@ import trashIcon from "../../../assets/trash-Icon.png";
 import styles from "./DeleteModal.css";
 import imageDelExpense from "../../../assets/imageDelExpense.png";
 import Modal from "@material-ui/core/Modal";
-
+import {deleteExpense} from "../../../features/expenseSlice";
+import { useDispatch } from "react-redux";
 const getRow = 0;
 
 export default function DeleteModal(getRow){
     const [open, setOpen] = useState(false);
+    const dispatch = useDispatch();
 
-    const deleteExpense = (id) => {
-        window.location.reload();
+    const handleRemoveExpense = (id) => {
+        dispatch(deleteExpense({ id }));
     }
     
   return (
@@ -23,7 +25,7 @@ export default function DeleteModal(getRow){
             <h1 className="title-del-form">Deletar Despesa</h1>
             <h1 className="text-del">Você tem certeza que deseja deleta esta despesa??</h1>
             <hr width="500"/>
-            <button className="btn-submit" type="button" onClick={() => deleteExpense(getRow.id)}>
+            <button className="btn-submit" type="button" onClick={() => handleRemoveExpense(getRow.id)}>
               Deletar Despesa
             </button>
           </div>
