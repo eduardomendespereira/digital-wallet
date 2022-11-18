@@ -17,6 +17,7 @@ function Wallet() {
 
   async function calculateAmount(){
     const getListCoins = (await getCoins()).data;
+    amount = 0;
     setCoins(getListCoins);
     for (let x in listExpenses){
       amount += coins[listExpenses[x].coin].bid * listExpenses[x].value
