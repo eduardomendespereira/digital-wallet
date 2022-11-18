@@ -66,7 +66,7 @@ function Wallet() {
           </div>
         </div>
         <div className="table-expense">
-          <ExpenseTable />
+          <ExpenseTable/>
         </div>
       </div>
     </section>
