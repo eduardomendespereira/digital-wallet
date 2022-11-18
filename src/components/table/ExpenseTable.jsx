@@ -3,6 +3,10 @@ import { useSelector } from "react-redux";
 import style  from "./ExpenseTable.css"
 import {deleteExpense} from "../../features/expenseSlice.js";
 import { useDispatch } from "react-redux";
+import React, {useState} from 'react';
+import trashIcon from "../../assets/trash-Icon.png"
+import imageDelExpense from "../../assets/imageDelExpense.png";
+import Modal from "@material-ui/core/Modal";
 
 function ExpenseTable(){
     
@@ -27,7 +31,7 @@ function ExpenseTable(){
             </thead>
             <tbody>
                 {rows.map((row) => 
-                    <tr>
+                    <tr key={row}>
                     <th>{row.description}</th>
                     <th>{parseFloat(row.value).toFixed(2)}</th>
                     <th>{row.coin}</th>

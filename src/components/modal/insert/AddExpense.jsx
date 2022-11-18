@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 
-export default function InsertModal() {
+export default function AddExpense() {
   const tags = ["Alimentação", "Lazer", "Trabalho", "Transporte", "Saúde"];
   const payment = ["Dinheiro", "Cartão de crédito", "Cartão de débito"];
   const [coins, setCoins] = React.useState([{}]);
@@ -93,7 +93,7 @@ export default function InsertModal() {
               <select id="coin-input" className="select-coin" name="coin" onChange={handleChange}>
                 {listAllCoins.map((coin) => {
                   return (
-                    <option key={coin.in} value={coin}>
+                    <option key={coin} value={coin}>
                       {coin}
                     </option>
                   );
@@ -103,7 +103,7 @@ export default function InsertModal() {
             <select className="space-pay" name="paymentMethod" id="paymentMethod-input-form-insert" onChange={handleChange}>
               {payment.map((pay) => {
                 return (
-                  <option key={pay.in} value={pay}>
+                  <option key={pay} value={pay}>
                     {pay}
                   </option>
                 );
@@ -114,7 +114,7 @@ export default function InsertModal() {
             <select className="space" name="tag" id="tag-input-form-insert" onChange={handleChange}>
               {tags.map((tag) => {
                 return (
-                  <option key={tag.in} value={tag}>
+                  <option key={tag} value={tag}>
                     {tag}
                   </option>
                 );
