@@ -5,10 +5,10 @@ import { getCoins } from "../../services/api.jsx";
 import ExpenseTable from "../../components/table/ExpenseTable.jsx";
 import AddExpense from "../../components/modal/insert/AddExpense";
 import {useSelector} from "react-redux";
+import {useEffect} from "react";
 
 
 function Wallet() {
-
   let [amount, setAmount] = React.useState(0);
   const navigate = useNavigate();
   const [coins, setCoins] = React.useState([{}]);
@@ -19,14 +19,15 @@ function Wallet() {
     const getListCoins = (await getCoins()).data;
     setCoins(getListCoins);
     for (let x in listExpenses){
-      amount += parseFloat(coins[listExpenses[x].coin].bid * listExpenses[x].value)
+      setAmount(coins[listExpenses[x].coin].bid * listExpenses[x].value)
       console.log(amount)
     }
   }
 
-  React.useEffect(() => {
-    calculateAmount();
+  useEffect(() => {
+    calculateAmount()
   }, []);
+
 
   return (
     <section className="wallet-body">
@@ -54,7 +55,7 @@ function Wallet() {
             <h1 className="text-activates">Total de Despesas</h1>
 
             <div>
-              <h1 className="text-result">R$ {amount}</h1>
+              <h1 className="text-result">R$ {amount.toFixed(2)}</h1>
             </div>
           </div>
         </div>
