@@ -11,8 +11,8 @@ export default function DeleteModal(props){
     const dispatch = useDispatch();
 
     const handleRemoveExpense = (id) => {
-        dispatch(deleteExpense({ id }));
-    }
+      dispatch(deleteExpense({ id }));
+  }
     
   return (
     <div>
