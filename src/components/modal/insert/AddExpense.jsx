@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom"
 
 export default function AddExpense() {
   const tags = ["Alimentação", "Lazer", "Trabalho", "Transporte", "Saúde"];
-  const payment = ["Dinheiro", "Cartão de crédito", "Cartão de débito"];
+  const payment = ["Dinheiro", "Cartão de crédito","Cartão de débito"];
   const [coins, setCoins] = React.useState([{}]);
   let listAllCoins = Object.keys(coins);
   const dispatch = useDispatch();

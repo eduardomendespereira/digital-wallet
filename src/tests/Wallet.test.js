@@ -15,7 +15,7 @@ function renderWithProvider(element) {
   }
 
   describe('Tests user interactions in modal insert expense', () => {
-    it('Shoud get description input value', async () => {
+    it('Shoud get description input description', async () => {
       renderWithProvider(<Wallet />);
 
       const openModalInsertExpenseButton = screen.getByTestId('insert-expense-button')
@@ -88,35 +88,35 @@ function renderWithProvider(element) {
 
     // });
 
-    // it('Shoud get value input payment', () => {
-    //   renderWithProvider(<Wallet />);
+    it('Shoud get value input payment', () => {
+      renderWithProvider(<Wallet />);
 
-    //   const openModalInsertExpenseButton = screen.getByTestId('insert-expense-button')
+      const openModalInsertExpenseButton = screen.getByTestId('insert-expense-button')
 
-    //   fireEvent.click(openModalInsertExpenseButton);
+      fireEvent.click(openModalInsertExpenseButton);
 
-    //   const inputPayment = screen.getByTestId('payment-input-id')[0] 
+      const inputPayment = screen.getAllByTestId('payment-input-id')[0]
 
-    //   fireEvent.change(inputPayment, { target : {
-    //     value: 'Dinheiro'
-    //   }});
+      fireEvent.change(inputPayment, { target : {
+        value: 'Dinheiro'
+      }});
 
-    //   expect(inputPayment).toHaveValue('Dinheiro');
-    // });
+      expect(inputPayment).toHaveValue('Dinheiro');
+    });
 
-    // it('Shoud get value input tag', async () => {
-    //   renderWithProvider(<Wallet />);
+    it('Shoud get value input tag', async () => {
+      renderWithProvider(<Wallet />);
 
-    //   const openModalInsertExpenseButton = screen.getByTestId('insert-expense-button')
+      const openModalInsertExpenseButton = screen.getByTestId('insert-expense-button')
 
-    //   fireEvent.click(openModalInsertExpenseButton);
+      fireEvent.click(openModalInsertExpenseButton);
 
-    //   const inputTag = screen.findAllByTestId('tag-input-id')
+      const inputTag = screen.getAllByTestId('tag-input-id')[0]
 
-    //   fireEvent.change(inputTag, { target : {
-    //     value: 'Lazer'
-    //   }});
+      fireEvent.change(inputTag, { target : {
+        value: 'Lazer'
+      }});
 
-    //   expect(inputTag).toHaveValue('Lazer');
-    // });
+      expect(inputTag).toHaveValue('Lazer');
+    });
   });
