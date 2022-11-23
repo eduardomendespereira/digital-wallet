@@ -61,6 +61,7 @@ export default function AddExpense() {
     <div>
       <button
         className="btn-insert"
+        data-testid='insert-expense-button'
         type="button"
         onClick={() => setOpen(true)}
       >
@@ -79,6 +80,7 @@ export default function AddExpense() {
               id="description-input-form-insert"
               placeholder="Descrição"
               type="text"
+              data-testid='description-input'
               value={values.description}
               onChange={handleChange}
             />
