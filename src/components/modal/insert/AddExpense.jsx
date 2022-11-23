@@ -80,7 +80,7 @@ export default function AddExpense() {
               id="description-input-form-insert"
               placeholder="Descrição"
               type="text"
-              data-testid='description-input'
+              data-testid='description-input-id'
               value={values.description}
               onChange={handleChange}
             />
@@ -90,6 +90,7 @@ export default function AddExpense() {
                 name="value"
                 placeholder="Valor"
                 id="value-input-form-insert"
+                data-testid='value-input-id'
                 required
                 value={values.value}
                 onChange={handleChange}
@@ -97,7 +98,7 @@ export default function AddExpense() {
               <select id="coin-input" className="select-coin" name="coin" onChange={handleChange}>
                 {listAllCoins.map((coin) => {
                   return (
-                    <option key={coin} value={coin}>
+                    <option data-testid='coin-input-id' key={coin} value={coin}>
                       {coin}
                     </option>
                   );
@@ -107,7 +108,7 @@ export default function AddExpense() {
             <select className="space-pay" name="paymentMethod" id="paymentMethod-input-form-insert" onChange={handleChange}>
               {payment.map((pay) => {
                 return (
-                  <option key={pay} value={pay}>
+                  <option data-testid='payment-input-id' key={pay} value={pay}>
                     {pay}
                   </option>
                 );
@@ -118,7 +119,7 @@ export default function AddExpense() {
             <select className="space" name="tag" id="tag-input-form-insert" onChange={handleChange}>
               {tags.map((tag) => {
                 return (
-                  <option key={tag} value={tag}>
+                  <option data-testid='tag-input-id' key={tag} value={tag}>
                     {tag}
                   </option>
                 );
