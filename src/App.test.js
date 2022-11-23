@@ -17,4 +17,14 @@ describe('Test sanity of routes', () => {
   
     expect(informationPage).toBeInTheDocument();
   });
+
+  it('Should render information page when the path is /wallet', () => {
+    window.history.pushState({}, 'Wallet page', '/wallet');
+  
+    render(<App />);
+  
+    const informationPage = screen.getByTestId('wallet-id');
+  
+    expect(informationPage).toBeInTheDocument();
+  });
 });

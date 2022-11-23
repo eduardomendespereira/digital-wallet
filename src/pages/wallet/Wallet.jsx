@@ -34,7 +34,7 @@ function Wallet() {
 }, [listExpenses])
 
   return (
-    <section className="wallet-body">
+    <section className="wallet-body" data-testid='wallet-id'>
       <div>
         <header className="header">
           <nav className="navbar">
