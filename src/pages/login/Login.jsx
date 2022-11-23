@@ -85,7 +85,7 @@ const Login = () => {
           <form className={css}>
             <h1 className="login-title">Login para continuar</h1>
             <div id="notification-error" className="notificatiob-error"></div>
-            <input id="email" type="email" placeholder="Email" />
+            <input id="email" data-testid='email-input-id' type="email" placeholder="Email" />
             <div
               className="notification-invalid"
               id="notification-invalid-email"
