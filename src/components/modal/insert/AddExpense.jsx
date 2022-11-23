@@ -1,8 +1,6 @@
 import * as React from "react";
 import styles from "./AddExpense.css";
 import { useParams } from "react-router-dom";
-import api from "../../../services/api.jsx"; 
-import { getCoins } from "../../../services/api.jsx"; 
 import { v4 as uuidv4 } from "uuid";
 import Modal from "@material-ui/core/Modal";
 import { addExpense } from '../../../features/expenseSlice.js'
@@ -42,16 +40,20 @@ export default function AddExpense() {
     }))
   }
 
-  async function getAllCoins() {
-    const r = await getCoins();
-    const data = r.data;
-    setCoins(data);
-    listAllCoins = Object.keys(coins);
-  }
-
   React.useEffect(() => {
-    getAllCoins();
-  }, []);
+    const fetchData = async() => {
+        try {
+            const res = await fetch('https://economia.awesomeapi.com.br/json/all')
+            const json = await res.json()
+            setCoins(json)
+            listAllCoins = Object.keys(coins);
+        } catch (err) {
+            console.log(err)
+        }
+        
+    }
+    fetchData()
+}, [])
 
   const [open, setOpen] = React.useState(false);
 

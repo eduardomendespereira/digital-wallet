@@ -79,7 +79,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="login-body" data-testid='login-page' id='login-page'>
+    <section className="login-body" data-testid='login-page'>
       <div className="container" id="container">
         <div className="form-container sign-in-container">
           <form className={css}>

@@ -1,7 +1,6 @@
 import * as React from "react";
 import styles from "./Wallet.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { getCoins } from "../../services/api.jsx";
 import ExpenseTable from "../../components/table/ExpenseTable.jsx";
 import AddExpense from "../../components/modal/insert/AddExpense";
 import {useSelector} from "react-redux";
@@ -15,19 +14,24 @@ function Wallet() {
   let listAllCoins = Object.keys(coins);
   let listExpenses = useSelector(store => store.expenses);
 
-  async function calculateAmount(){
-    const getListCoins = (await getCoins()).data;
-    amount = 0;
-    setCoins(getListCoins);
-    for (let x in listExpenses){
-      amount += coins[listExpenses[x].coin].bid * listExpenses[x].value
+  React.useEffect(() => {
+    const fetchData = async() => {
+        try {
+            const res = await fetch('https://economia.awesomeapi.com.br/json/all')
+            const json = await res.json()
+            setCoins(json)
+            amount = 0;
+            for (let x in listExpenses){
+              amount += coins[listExpenses[x].coin].bid * listExpenses[x].value
+            }
+            setAmount(amount)
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
-    setAmount(amount)
-  }
-
-  useEffect(() => {
-    calculateAmount()
-  }, [listExpenses]);
+    fetchData()
+}, [listExpenses])
 
   return (
     <section className="wallet-body">
