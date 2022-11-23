@@ -15,7 +15,7 @@ function renderWithProvider(element) {
   }
 
   describe('Tests user interactions in modal insert expense', () => {
-    it('Shoud get description input value', () => {
+    it('Shoud get description input value', async () => {
       renderWithProvider(<Wallet />);
 
       const openModalInsertExpenseButton = screen.getByTestId('insert-expense-button')
@@ -31,7 +31,7 @@ function renderWithProvider(element) {
       expect(inputDescription).toHaveValue('compras do mes');
     });
 
-    it('Shoud get value input value', () => {
+    it('Shoud get value input value', async () => {
       renderWithProvider(<Wallet />);
 
       const openModalInsertExpenseButton = screen.getByTestId('insert-expense-button')
@@ -47,7 +47,7 @@ function renderWithProvider(element) {
       expect(inputValue).toHaveValue(10);
     });
 
-    it('Shoud get value input coin', () => {
+    it('Shoud get value input coin', async () => {
       renderWithProvider(<Wallet />);
 
       const openModalInsertExpenseButton = screen.getByTestId('insert-expense-button')
@@ -70,12 +70,28 @@ function renderWithProvider(element) {
 
     //   fireEvent.click(openModalInsertExpenseButton);
 
-    //   const inputPayment = screen.getByTestId('payment-input-id')
+    //   const inputPayment = screen.getByTestId('payment-input-id')[0] 
 
     //   fireEvent.change(inputPayment, { target : {
     //     value: 'Dinheiro'
     //   }});
 
     //   expect(inputPayment).toHaveValue('Dinheiro');
+    // });
+
+    // it('Shoud get value input tag', async () => {
+    //   renderWithProvider(<Wallet />);
+
+    //   const openModalInsertExpenseButton = screen.getByTestId('insert-expense-button')
+
+    //   fireEvent.click(openModalInsertExpenseButton);
+
+    //   const inputTag = screen.findAllByTestId('tag-input-id')
+
+    //   fireEvent.change(inputTag, { target : {
+    //     value: 'Lazer'
+    //   }});
+
+    //   expect(inputTag).toHaveValue('Lazer');
     // });
   });
