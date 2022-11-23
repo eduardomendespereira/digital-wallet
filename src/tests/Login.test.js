@@ -27,4 +27,40 @@ function renderWithProvider(element) {
       expect(emailInput).toHaveValue('myTest@gmail.com')
 
     });
+
+    it('Should get password input value', () => {
+      renderWithProvider(<Login />);
+
+      const passwordInput = screen.getByTestId('password-input-id');
+
+      fireEvent.change(passwordInput, { target : {
+        value: 'password123'
+      }});
+
+      expect(passwordInput).toHaveValue('password123')
+
+    });
+
+    it('Should have both entries when clicking the login button', () => {
+      renderWithProvider(<Login />);
+
+      const passwordInput = screen.getByTestId('password-input-id');
+      const emailInput = screen.getByTestId('email-input-id');
+      const loginButton = screen.getByTestId('login-button');
+
+      expect(loginButton).toBeInTheDocument();
+
+      fireEvent.change(emailInput, { target : {
+        value: 'myTest@gmail.com'
+      }});
+
+      fireEvent.change(passwordInput, { target : {
+        value: 'password123'
+      }});
+
+      fireEvent.click(loginButton);
+
+      expect(passwordInput).toHaveValue('password123')
+      expect(emailInput).toHaveValue('myTest@gmail.com')
+    });
   });

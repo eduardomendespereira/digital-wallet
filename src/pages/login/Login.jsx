@@ -95,6 +95,7 @@ const Login = () => {
               type="password"
               placeholder="Senha"
               pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              data-testid='password-input-id'
             />
             <div
               className="notification-invalid"
@@ -104,6 +105,7 @@ const Login = () => {
               className={css.button}
               type="button"
               id="login"
+              data-testid='login-button'
               onClick={handleLogin}
             >
               Login
