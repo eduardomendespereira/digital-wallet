@@ -126,7 +126,7 @@ export default function AddExpense() {
               })}
             </select>
             <h5 className="desc-tag">Tags</h5>
-            <button className="btn-submit" type="button" onClick={handleAddExpense}>
+            <button data-testid='save-expense-button' className="btn-submit" type="button" onClick={handleAddExpense}>
               Adicionar Despesa
             </button>
           </form>
