@@ -4,7 +4,6 @@ import style  from "./ExpenseTable.css"
 import {deleteExpense} from "../../features/expenseSlice.js";
 import { useDispatch } from "react-redux";
 import React, {useState} from 'react';
-import DeleteModal from "../modal/delete/DeleteModal";
 
 function ExpenseTable(){
     
