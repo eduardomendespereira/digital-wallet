@@ -122,4 +122,12 @@ function renderWithProvider(element) {
       expect(table).toBeInTheDocument('compras do mes');
 
     });
+
+    it('Should check amount', async () => {
+      renderWithProvider(<Wallet />);
+
+      const getAmount = screen.getByTestId('amount-test-id');
+
+      expect(getAmount).toBeInTheDocument();
+    });
   });

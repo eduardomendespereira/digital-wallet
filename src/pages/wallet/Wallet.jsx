@@ -58,7 +58,7 @@ function Wallet() {
             </div>
             <h1 className="text-activates">Total de Despesas</h1>
 
-            <div>
+            <div data-testid='amount-test-id'>
               <h1 className="text-result">R$ {amount.toFixed(2)}</h1>
             </div>
           </div>
