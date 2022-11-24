@@ -69,7 +69,7 @@ function Wallet() {
             <AddExpense />
           </div>
         </div>
-        <div className="table-expense">
+        <div className="table-expense" data-testid='expense-table-id'>
           <ExpenseTable/>
         </div>
       </div>

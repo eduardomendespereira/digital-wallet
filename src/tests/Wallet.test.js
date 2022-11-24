@@ -63,31 +63,6 @@ function renderWithProvider(element) {
       expect(inputCoin).toHaveValue('USD');
     });
 
-    // it('Shoud insert expense', async () => {
-    //   renderWithProvider(<Wallet />);
-
-    //   const openModalInsertExpenseButton = screen.getByTestId('insert-expense-button');
-    //   const saveExpenseButton = screen.getByTestId('save-expense-button');
-
-    //   fireEvent.click(openModalInsertExpenseButton);
-
-    //   const inputDescription = screen.getByTestId('description-input-id');
-    //   const inputValue = screen.getByTestId('value-input-id');
-
-    //   fireEvent.change(inputDescription, { target : {
-    //     value: 'compras do mes'
-    //   }});
-
-    //   fireEvent.change(inputValue, { target : {
-    //     value: 10
-    //   }});
-
-    //   fireEvent.click(saveExpenseButton);
-
-    //   expect(getByText('compras do mes')).toBeInTheDocument();
-
-    // });
-
     it('Shoud get value input payment', () => {
       renderWithProvider(<Wallet />);
 
@@ -118,5 +93,33 @@ function renderWithProvider(element) {
       }});
 
       expect(inputTag).toHaveValue('Lazer');
+    });
+
+    it('Shoud insert expense', async () => {
+      renderWithProvider(<Wallet />);
+
+      const openModalInsertExpenseButton = screen.getByTestId('insert-expense-button');
+
+      fireEvent.click(openModalInsertExpenseButton);
+
+      const saveExpenseButton = screen.getByTestId('save-expense-button');
+
+      const inputDescription = screen.getByTestId('description-input-id');
+      const inputValue = screen.getByTestId('value-input-id');
+
+      fireEvent.change(inputDescription, { target : {
+        value: 'compras do mes'
+      }});
+
+      fireEvent.change(inputValue, { target : {
+        value: 10
+      }});
+
+      fireEvent.click(saveExpenseButton);
+
+      const table = screen.getByTestId('expense-table-id');
+
+      expect(table).toBeInTheDocument('compras do mes');
+
     });
   });
