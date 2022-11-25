@@ -13,18 +13,18 @@ describe('Test sanity of routes', () => {
   
     render(<App />);
   
-    const informationPage = screen.getByTestId('login-page');
+    const loginPage = screen.getByTestId('login-page');
   
-    expect(informationPage).toBeInTheDocument();
+    expect(loginPage).toBeInTheDocument();
   });
 
-  it('Should render information page when the path is /wallet', () => {
+  it('Should render wallet page when the path is /wallet', () => {
     window.history.pushState({}, 'Wallet page', '/wallet');
   
     render(<App />);
   
-    const informationPage = screen.getByTestId('wallet-id');
+    const walletPage = screen.getByTestId('wallet-id');
   
-    expect(informationPage).toBeInTheDocument();
+    expect(walletPage).toBeInTheDocument();
   });
 });

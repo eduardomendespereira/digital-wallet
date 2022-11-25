@@ -63,4 +63,31 @@ function renderWithProvider(element) {
       expect(passwordInput).toHaveValue('password123')
       expect(emailInput).toHaveValue('myTest@gmail.com')
     });
+
+    it('Should email and password error message appear', () => {
+      renderWithProvider(<Login />);
+
+      const passwordInput = screen.getByTestId('password-input-id');
+      const emailInput = screen.getByTestId('email-input-id');
+      const loginButton = screen.getByTestId('login-button');
+
+      expect(loginButton).toBeInTheDocument();
+
+      fireEvent.change(emailInput, { target : {
+        value: 'testError'
+      }});
+
+      fireEvent.change(passwordInput, { target : {
+        value: 'pass1'
+      }});
+
+      fireEvent.click(loginButton);
+
+      const loginPage = screen.getByTestId('login-page');
+  
+      expect(loginPage).toBeInTheDocument('Formato de email inválido');
+
+      expect(loginPage).toBeInTheDocument('A senha deve conter no mínimo 8 caracteres letras maiúsculas, minúsculas e pelo menos 1 caracter especial');
+
+    });
   });
