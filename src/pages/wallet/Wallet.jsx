@@ -42,8 +42,8 @@ function Wallet() {
               <img src={require("../../assets/logo-wallet.png")} />
             </a>
             <h1>CARTEIRA</h1>
-            <a className="exit-icon" onClick={() => navigate("/")}>
-              <img src={require("../../assets/exit-icon.png")} />
+            <a  className="exit-icon" onClick={() => navigate("/")}>
+              <img data-testid='exit-button-id' src={require("../../assets/exit-icon.png")} />
             </a>
           </nav>
         </header>
