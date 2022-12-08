@@ -1,16 +1,19 @@
 module.exports = {
-  "stories": [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
-  ],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-    "@storybook/preset-create-react-app"
-  ],
-  "framework": "@storybook/react",
-  "core": {
-    "builder": "@storybook/builder-webpack5"
-  }
-}
+  // ...
+  webpackFinal: async (config) => {
+    let ForkTsCheckerWebpackPluginIdx;
+    config.plugins.forEach((plugin, idx) => {
+      if ('ForkTsCheckerWebpackPlugin' === plugin.constructor.name) {
+        ForkTsCheckerWebpackPluginIdx = idx;
+      }
+    });
+    if (
+      config.mode === 'production' &&
+      ForkTsCheckerWebpackPluginIdx !== undefined
+    ) {
+      config.plugins.splice(ForkTsCheckerWebpackPluginIdx, 1);
+    }
+
+    return config;
+  },
+};
